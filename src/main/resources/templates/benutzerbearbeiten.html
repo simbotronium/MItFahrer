@@ -1,0 +1,16 @@
+<!DOCTYPE HTML>
+<html   xmlns="http://www.w3.org/1999/xhtml" 
+        xmlns:th="http://www.thymeleaf.org">
+        <head>
+                <title>Benutzer bearbeiten</title>
+        </head>
+        <body>
+                <h1 th:text="|Benutzerprofil ${benutzerID} bearbeiten|">Benutzerprofil bearbeiten</h1>
+                
+                <form   method="POST"
+                        action="" name="benutzerProfil">
+                        <label for="benutzerName"></label><br>
+                        <input type="text" name="benutzerName" id="benutzerName"><br>
+                </form>
+        </body>    
+</html>
