@@ -4,9 +4,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import jakarta.websocket.server.PathParam;
-
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 
 @Controller
@@ -14,7 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class BenutzerController {
 
     @GetMapping("/{zahl}")
-    public String getMethodName(@PathParam("zahl") int zahl, Model m) {
+    public String getMethodName(@PathVariable("zahl") Long zahl, Model m) {
         m.addAttribute("benutzerID", zahl);
         return "benutzerbearbeiten";
     }
