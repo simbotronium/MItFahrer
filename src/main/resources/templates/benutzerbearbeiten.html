@@ -7,8 +7,8 @@
         <body>
                 <h1 th:text="|Benutzerprofil ${benutzerID} bearbeiten|">Benutzerprofil bearbeiten</h1>
                 
-                <form   method="POST"
-                        action="" name="benutzerProfil">
+                <form   th:method="POST"
+                        th:action="@{#}" name="benutzerProfil">
                         <label for="benutzerName">Name</label><br>
                         <input type="text" name="benutzerName" id="benutzerName"><br>
 
@@ -29,7 +29,7 @@
                                 <tr>
                                         <td>
                                                 <input type="text" name="mag" id="mag">
-                                                <p th:text="magStr">Toast</p>
+                                                <ul th:text="magStr">Toast</p>
                                         </td>
                                         <td>
                                                 <input type="text" name="magNicht" id="magNicht">
