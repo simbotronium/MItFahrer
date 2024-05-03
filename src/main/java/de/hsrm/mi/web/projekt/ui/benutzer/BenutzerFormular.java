@@ -1,11 +1,13 @@
 package de.hsrm.mi.web.projekt.ui.benutzer;
 
+import java.time.LocalDate;
+
 public class BenutzerFormular {
 
     private String name = "";
     private String mail = "";
     private String password = "";
-    private String birthday = "";
+    private LocalDate birthday;
 
     public String getName() {
         return name;
@@ -19,7 +21,7 @@ public class BenutzerFormular {
         return password;
     }
 
-    public String getBirthday() {
+    public LocalDate getBirthday() {
         return birthday;
     }
 
@@ -35,7 +37,7 @@ public class BenutzerFormular {
         this.password = password;
     }
 
-    public void setBirthday(String birthday) {
+    public void setBirthday(LocalDate birthday) {
         this.birthday = birthday;
     }
 
