@@ -8,18 +8,19 @@
                 <h1 th:text="|Benutzerprofil ${benutzerID} bearbeiten|">Benutzerprofil bearbeiten</h1>
                 
                 <form   th:method="POST"
+                        th:object="${formular}"
                         th:action="@{#}" name="benutzerProfil">
                         <label for="benutzerName">Name</label><br>
-                        <input type="text" name="benutzerName" id="benutzerName"><br>
+                        <input type="text" th:field="*{name}" name="benutzerName" id="benutzerName"><br>
 
                         <label for="email">E-mail</label>E-mail<br>
-                        <input type="text" name="email" id="email"><br>
+                        <input type="text" th:field="*{mail}" name="email" id="email"><br>
 
                         <label for="passwort">Passwort</label>Passwort<br>
-                        <input type="text" name="passwort" id="passwort"><br>
+                        <input type="text" th:field="*{password}" name="passwort" id="passwort"><br>
                         
                         <label for="geburtstag">Geburtstag</label>Geburtstag<br>
-                        <input type="date" name="geburtstag" id="geburtstag"><br>
+                        <input type="date" th:field="*{birthday}" name="geburtstag" id="geburtstag"><br>
 
                         <table>
                                 <tr>
