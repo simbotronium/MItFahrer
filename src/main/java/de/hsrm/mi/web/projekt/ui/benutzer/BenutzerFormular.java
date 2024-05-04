@@ -1,6 +1,9 @@
 package de.hsrm.mi.web.projekt.ui.benutzer;
 
 import java.time.LocalDate;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 public class BenutzerFormular {
 
@@ -8,6 +11,24 @@ public class BenutzerFormular {
     private String mail = "";
     private String password = "";
     private LocalDate birthday;
+    private Set<String> mag = new HashSet<>(Arrays.asList("a", "b", "c", "d", "e"));
+    private Set<String> magNicht = new HashSet<>(Arrays.asList("f", "g"));
+
+    public Set<String> getMag() {
+        return mag;
+    }
+
+    public Set<String> getMagNicht() {
+        return magNicht;
+    }
+
+    public void setMag(Set<String> mag) {
+        this.mag = mag;
+    }
+
+    public void setMagNicht(Set<String> magNicht) {
+        this.magNicht = magNicht;
+    }
 
     public String getName() {
         return name;

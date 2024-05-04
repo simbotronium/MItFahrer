@@ -8,18 +8,24 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 
 
 @Controller
 @RequestMapping("/benutzer")
-@SessionAttributes (names = {"formular", "benutzerID"})
+@SessionAttributes (names = {"formular", "benutzerID", "maxwunsch"})
 public class BenutzerController {
 
-    @ModelAttribute
+    Logger logger = LoggerFactory.getLogger(this.getClass());
+    private final int maxwunsch = 5;
+
+    @ModelAttribute("formular")
     public void initFormular(Model m) {
         m.addAttribute("formular", new BenutzerFormular());
+        m.addAttribute("maxwunsch", Integer.toString(maxwunsch));
     }
 
     @GetMapping("/{zahl}")

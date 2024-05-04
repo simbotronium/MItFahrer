@@ -3,6 +3,9 @@
         xmlns:th="http://www.thymeleaf.org">
         <head>
                 <title>Benutzer bearbeiten</title>
+                <style>
+                        table td {vertical-align: top};
+                </style>
         </head>
         <body>
                 <h1 th:text="|Benutzerprofil ${benutzerID} bearbeiten|">Benutzerprofil bearbeiten</h1>
@@ -23,20 +26,34 @@
                         <input type="date" th:field="*{birthday}" name="geburtstag" id="geburtstag"><br>
 
                         <table>
-                                <tr>
-                                        <th>Mag</th>
-                                        <th>Mag nicht</th>
-                                </tr>
-                                <tr>
-                                        <td>
-                                                <input type="text" name="mag" id="mag">
-                                                <ul th:text="magStr">Toast</p>
-                                        </td>
-                                        <td>
-                                                <input type="text" name="magNicht" id="magNicht">
-                                                <p th:text="magNichtStr">Weinen</p>
-                                        </td>
-                                </tr>
+                                <thead>
+                                        <tr>
+                                                <th><p th:text="|Mag (max ${maxwunsch})|">Mag <br>(max. 5)</p></th>
+                                                <th><p th:text="|Mag nicht (max ${maxwunsch})|">Mag nicht <br>(max. 5)</p></th>
+                                        </tr>
+                                </thead>
+                                <tbody>
+                                        <tr>
+                                                <td>
+                                                        <input th:if="${#lists.size(formular.mag)} le ${maxwunsch}" type="text" name="mag" id="mag">
+                                                </td>
+                                                <td>
+                                                        <input th:if="${#lists.size(formular.magNicht)} le ${maxwunsch}" type="text" name="magNicht" id="magNicht">
+                                                </td>
+                                        </tr>
+                                        <tr>
+                                                <td>
+                                                        <ul th:each="m : ${formular.mag}">
+                                                                <le th:text="${m}">mag ich</le>
+                                                        </ul>
+                                                </td>
+                                                <td>
+                                                        <ul th:each="mn : ${formular.magNicht}">
+                                                                <le th:text="${mn}">mag ich nicht</le>
+                                                        </ul>
+                                                </td>
+                                        </tr>
+                                </tbody>
                         </table>
                         <input type="submit" value="ok">
                 </form>
