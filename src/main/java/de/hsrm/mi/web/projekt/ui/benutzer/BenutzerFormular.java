@@ -5,11 +5,15 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
+
 public class BenutzerFormular {
 
     private String name = "";
     private String mail = "";
     private String password = "";
+    @DateTimeFormat(iso=ISO.DATE)
     private LocalDate birthday;
     private Set<String> mag = new HashSet<>(Arrays.asList("a", "b", "c", "d", "e"));
     private Set<String> magNicht = new HashSet<>(Arrays.asList("f", "g"));
