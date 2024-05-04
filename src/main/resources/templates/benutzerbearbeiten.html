@@ -43,12 +43,12 @@
                                         </tr>
                                         <tr>
                                                 <td>
-                                                        <ul th:each="m : ${formular.mag}">
+                                                        <ul th:each="m : ${formular.mag}" th:sortedby="${m}">
                                                                 <le th:text="${m}">mag ich</le>
                                                         </ul>
                                                 </td>
                                                 <td>
-                                                        <ul th:each="mn : ${formular.magNicht}">
+                                                        <ul th:each="mn : ${formular.magNicht}" th:sortedby="${mn}">
                                                                 <le th:text="${mn}">mag ich nicht</le>
                                                         </ul>
                                                 </td>

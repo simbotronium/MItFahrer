@@ -15,8 +15,8 @@ public class BenutzerFormular {
     private String password = "";
     @DateTimeFormat(iso=ISO.DATE)
     private LocalDate birthday;
-    private Set<String> mag = new HashSet<>(Arrays.asList("a", "b", "c", "d", "e"));
-    private Set<String> magNicht = new HashSet<>(Arrays.asList("f", "g"));
+    private Set<String> mag = new HashSet<>();
+    private Set<String> magNicht = new HashSet<>();
 
     public Set<String> getMag() {
         return mag;
