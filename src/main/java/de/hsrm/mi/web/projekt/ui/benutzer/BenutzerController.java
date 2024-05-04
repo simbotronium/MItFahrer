@@ -40,15 +40,15 @@ public class BenutzerController {
 
     @PostMapping("/{zahl}")
     public String postMethodName(@SessionAttribute("formular") BenutzerFormular form,
-     String name, String mail, String password, LocalDate birthday,
+     String name, String mail, String password, LocalDate birthday, String mag, String magNicht,
      Model m) {
         form.setName(name);
         form.setBirthday(birthday);
         form.setMail(mail);
         form.setPassword(password);
+        if (mag != null && !mag.equals("")) form.getMag().add(mag);
+        if (magNicht != null && !magNicht.equals("")) form.getMagNicht().add(magNicht);
         return "benutzerbearbeiten";
     }
-    
-    
     
 }

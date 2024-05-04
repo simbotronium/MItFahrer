@@ -35,10 +35,10 @@
                                 <tbody>
                                         <tr>
                                                 <td>
-                                                        <input th:if="${#lists.size(formular.mag)} le ${maxwunsch}" type="text" name="mag" id="mag">
+                                                        <input th:if="${#lists.size(formular.mag)} lt ${maxwunsch}" th:value="${mag}" type="text" name="mag" id="mag">
                                                 </td>
                                                 <td>
-                                                        <input th:if="${#lists.size(formular.magNicht)} le ${maxwunsch}" type="text" name="magNicht" id="magNicht">
+                                                        <input th:if="${#lists.size(formular.magNicht)} lt ${maxwunsch}" th:value="${magNicht}" type="text" name="magNicht" id="magNicht">
                                                 </td>
                                         </tr>
                                         <tr>
