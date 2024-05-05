@@ -14,7 +14,7 @@
 <body>
         <div class="mt-4 p-5 jumbotron bg-primary text-center text-white rounded">
                 <h1>Die MI fahrzentrale</h1>
-                <p th:text="|Benutzerprofil ${benutzerID} bearbeiten|">Benutzerprofil bearbeiten</p>
+                <h4 th:text="|Benutzerprofil ${benutzerID} bearbeiten|">Benutzerprofil bearbeiten</h4>
         </div>
         <form th:method="POST" th:object="${formular}" th:action="@{#}" name="benutzerProfil">
                 <div class="container">
@@ -39,12 +39,12 @@
                         </div>
                         <div class="row">
                                 <div class="col-sm-6">
-                                        <h4 th:text="|Mag (max ${maxwunsch})|">Mag (max. 5)</h4>
+                                        <h4 th:text="|Mag (max ${maxwunsch})|">Mag</h4>
                                         <input th:if="${#lists.size(formular.mag)} lt ${maxwunsch}" th:value="${mag}"
                                                 type="text" class="form-control" name="mag" id="mag">
                                 </div>
                                 <div class="col-sm-6">
-                                        <h4 th:text="|Mag nicht (max ${maxwunsch})|">Mag nicht (max. 5)</h4>
+                                        <h4 th:text="|Mag nicht (max ${maxwunsch})|">Mag nicht</h4>
                                         <input th:if="${#lists.size(formular.magNicht)} lt ${maxwunsch}"
                                                 th:value="${magNicht}" type="text" class="form-control" name="magNicht"
                                                 id="magNicht">
@@ -52,19 +52,19 @@
                         </div>
                         <div class="row">
                                 <div class="col-sm-6">
-                                        <ul th:each="m : ${formular.mag}" th:sortedby="${m}"
-                                                class="list-group list-group-flush">
+                                        <ul th:each="m : ${#lists.sort(formular.mag)}" 
+                                                class="list-group">
                                                 <li th:text="${m}" class="list-group-item">Mag ich</li>
                                         </ul>
                                 </div>
                                 <div class="col-sm-6">
-                                        <ul th:each="mn : ${formular.magNicht}" th:sortedby="${mn}"
-                                                class="list-group list-group-flush">
+                                        <ul th:each="mn : ${#lists.sort(formular.magNicht)}"
+                                                class="list-group">
                                                 <li th:text="${mn}" class="list-group-item">Mag ich nicht</li>
                                         </ul>
                                 </div>
                                 <div class="col-sm-12">
-                                        <div class="d-grid">
+                                        <div class="d-grid mt-4">
                                                 <input type="submit" class="btn btn-primary btn-block" value="ok">
                                         </div>
                                 </div>
