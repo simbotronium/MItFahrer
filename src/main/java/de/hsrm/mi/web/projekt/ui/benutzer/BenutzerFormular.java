@@ -7,30 +7,43 @@ import java.util.Set;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
+
 public class BenutzerFormular {
 
+    @NotBlank
+    @Size(min=3, max=80, message="Der name muss mind. {min} bis {max} Zeichen lang sein")
     private String name = "";
     private String mail = "";
     private String password = "";
     @DateTimeFormat(iso=ISO.DATE)
     private LocalDate birthday;
-    private Set<String> mag = new HashSet<>();
-    private Set<String> magNicht = new HashSet<>();
+    private Set<String> magList = new HashSet<>();
+    private Set<String> magNichtList = new HashSet<>();
 
-    public Set<String> getMag() {
-        return mag;
+    public Set<String> getMagList() {
+        return this.magList;
     }
 
-    public Set<String> getMagNicht() {
-        return magNicht;
+    public Set<String> getMagNichtList() {
+        return this.magNichtList;
     }
 
-    public void setMag(Set<String> mag) {
-        this.mag = mag;
+    public void setMagList(Set <String> _mag) {
+        this.magList = _mag;
     }
 
-    public void setMagNicht(Set<String> magNicht) {
-        this.magNicht = magNicht;
+    public void setMagNichtList(Set <String> magNicht) {
+        this.magNichtList = magNicht;
+    }
+
+    public void addMag(String _mag) {
+        this.magList.add(_mag);
+    }
+
+    public void addMagNicht(String _magNicht) {
+        this.magNichtList.add(_magNicht);
     }
 
     public String getName() {

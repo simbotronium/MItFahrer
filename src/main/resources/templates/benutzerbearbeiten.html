@@ -22,7 +22,8 @@
                                 <div class="col-sm-12 form-group">
                                         <label for="benutzerName">Name</label><br>
                                         <input type="text" class="form-control" th:field="*{name}" name="benutzerName"
-                                                id="benutzerName"><br>
+                                                id="benutzerName">
+                                                <span th:if="${#fields.hasErrors('name')}"  th:errors="*{name}">x</span><br>
 
                                         <label for="email">E-mail</label><br>
                                         <input type="email" class="form-control" th:field="*{mail}" name="email"
@@ -40,28 +41,27 @@
                         <div class="row">
                                 <div class="col-sm-6">
                                         <h4 th:text="|Mag (max ${maxwunsch})|">Mag</h4>
-                                        <input th:if="${#lists.size(formular.mag)} lt ${maxwunsch}" th:value="${mag}"
+                                        <input th:if="${#lists.size(formular.magList)} lt ${maxwunsch}" th:value="${mag}"
                                                 type="text" class="form-control" name="mag" id="mag">
                                 </div>
                                 <div class="col-sm-6">
                                         <h4 th:text="|Mag nicht (max ${maxwunsch})|">Mag nicht</h4>
-                                        <input th:if="${#lists.size(formular.magNicht)} lt ${maxwunsch}"
+                                        <input th:if="${#lists.size(formular.magNichtList)} lt ${maxwunsch}"
                                                 th:value="${magNicht}" type="text" class="form-control" name="magNicht"
                                                 id="magNicht">
                                 </div>
                         </div>
                         <div class="row">
                                 <div class="col-sm-6">
-                                        <ul th:each="m : ${#lists.sort(formular.mag)}" 
+                                        <ul th:each="m : ${#lists.sort(formular.magList)}" 
                                                 class="list-group">
                                                 <li th:text="${m}" class="list-group-item">Mag ich</li>
                                         </ul>
                                 </div>
                                 <div class="col-sm-6">
-                                        <ul th:each="mn : ${#lists.sort(formular.magNicht)}"
-                                                class="list-group">
-                                                <li th:text="${mn}" class="list-group-item">Mag ich nicht</li>
-                                        </ul>
+                                        <ul class="list-group">
+                                                <li th:each="mn : ${#lists.sort(formular.magNichtList)}" th:text="${mn}" class="list-group-item">Mag ich nicht</li>
+                                        </ul> 
                                 </div>
                                 <div class="col-sm-12">
                                         <div class="d-grid mt-4">

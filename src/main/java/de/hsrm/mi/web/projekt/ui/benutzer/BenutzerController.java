@@ -2,9 +2,15 @@ package de.hsrm.mi.web.projekt.ui.benutzer;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
+
+import jakarta.validation.Valid;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -39,15 +45,13 @@ public class BenutzerController {
     }
 
     @PostMapping("/{zahl}")
-    public String postMethodName(@SessionAttribute("formular") BenutzerFormular form,
-     String name, String mail, String password, LocalDate birthday, String mag, String magNicht,
-     Model m) {
-        form.setName(name);
-        form.setBirthday(birthday);
-        form.setMail(mail);
-        form.setPassword(password);
-        if (mag != null && !mag.equals("")) form.getMag().add(mag);
-        if (magNicht != null && !magNicht.equals("")) form.getMagNicht().add(magNicht);
+    public String postMethodName(@Valid @ModelAttribute("formular") BenutzerFormular form, BindingResult result,
+     Model m, @RequestParam("mag") String mag, @RequestParam("magNicht") String magNicht) {
+        if(result.hasErrors()) {
+            return "benutzerbearbeiten";
+        }
+        if (mag != null && !mag.equals("")) form.getMagList().add(mag);
+        if (magNicht != null && !magNicht.equals("")) form.getMagNichtList().add(magNicht);
         return "benutzerbearbeiten";
     }
     
