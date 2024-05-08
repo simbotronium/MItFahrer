@@ -21,6 +21,8 @@ public class BenutzerFormular {
     private LocalDate birthday;
     private Set<String> magList = new HashSet<>();
     private Set<String> magNichtList = new HashSet<>();
+    private String mag;
+    private String magNicht;
 
     public Set<String> getMagList() {
         return this.magList;
@@ -48,6 +50,22 @@ public class BenutzerFormular {
 
     public String getName() {
         return name;
+    }
+
+    public String getMag() {
+        return this.mag;
+    }
+
+    public String getMagNicht() {
+        return this.magNicht;
+    }
+
+    public void setMag(String mag) {
+        this.mag = mag;
+    }
+
+    public void setMagNicht(String magNicht) {
+        this.magNicht = magNicht;
     }
 
     public String getMail() {

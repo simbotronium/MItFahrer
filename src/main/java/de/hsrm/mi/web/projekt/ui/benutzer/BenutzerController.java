@@ -46,9 +46,9 @@ public class BenutzerController {
 
     @PostMapping("/{zahl}")
     public String postMethodName(@Valid @ModelAttribute("formular") BenutzerFormular form, BindingResult result,
-     Model m, @RequestParam("mag") String mag, @RequestParam("magNicht") String magNicht) {
-        if (mag != null && !mag.equals("")) form.getMagList().add(mag);
-        if (magNicht != null && !magNicht.equals("")) form.getMagNichtList().add(magNicht);
+     Model m) {
+        if (form.getMag() != null && !form.getMag().equals("")) form.getMagList().add(form.getMag());
+        if (form.getMagNicht() != null && !form.getMagNicht().equals("")) form.getMagNichtList().add(form.getMagNicht());
         if(result.hasErrors()) {
             return "benutzerbearbeiten";
         }
