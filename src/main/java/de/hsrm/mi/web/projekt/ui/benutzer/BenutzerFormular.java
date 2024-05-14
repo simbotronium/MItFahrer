@@ -16,14 +16,14 @@ import jakarta.validation.constraints.Size;
 public class BenutzerFormular {
 
     @NotBlank
-    @Size(min=3, max=80, message="Der name muss mind. {min} bis {max} Zeichen lang sein!")
+    @Size(min=3, max=80, message="{form.name.error}")
     private String name = "";
-    @Email(message="Liebe Gr\u00fc\u00dfe vom Mailer-Daemon!")
+    @Email(message="{form.mail.error}")
     private String mail = "";
     @GutesPasswort
     private String password = "";
     @DateTimeFormat(iso=ISO.DATE)
-    @Past(message = "Zeitreisende werden hier diskriminiert. Bitte das Geburtstdatum deiner Gro\u00dfeltern angeben. Danke.")
+    @Past(message = "{form.birthday.error}")
     private LocalDate birthday;
     private Set<String> magList = new HashSet<>();
     private Set<String> magNichtList = new HashSet<>();
