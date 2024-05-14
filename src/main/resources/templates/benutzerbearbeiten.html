@@ -1,6 +1,5 @@
 <!DOCTYPE HTML>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-
 <head>
         <meta charset="utf-8">
         <!-- Integrierung von Bootstrap -->
@@ -10,29 +9,39 @@
         <!-- Ende Bootstrap-->
         <title>Benutzer bearbeiten</title>
 </head>
-
 <body>
-        <div class="mt-4 p-5 jumbotron bg-primary text-center text-white rounded">
-                <h1>Die MI fahrzentrale</h1>
-                <h4 th:text="|Benutzerprofil ${benutzerID} bearbeiten|">Benutzerprofil bearbeiten</h4>
-        </div>
-        <form th:method="POST" th:object="${formular}" th:action="@{#}" name="benutzerProfil">
-                <div class="container">
+        <header>
+                <div class="mb-4 p-5 jumbotron bg-primary text-center text-white rounded">
+                        <h1>Die MI fahrzentrale</h1>
+                        <h4 th:text="|Benutzerprofil ${benutzerID} bearbeiten|">Benutzerprofil bearbeiten</h4>
+                </div>
+        </header>
+
+        <div class="container">
+                <form th:method="POST" th:object="${formular}" th:action="@{#}" name="benutzerProfil">
                         <div class="row mt-4">
                                 <div class="col-sm-12 form-group">
                                         <label for="benutzerName">Name</label><br>
-                                        <input  class="form-control" type="text"
+                                        <!-- <input  class="form-control" type="text"
                                                 th:field="*{name}"
                                                 th:classappend="${#fields.hasErrors('name')} ? 'is-invalid' : ''">
                                         <div    class="text-danger" 
                                                 th:if="${#fields.hasErrors('name')}"  
                                                 th:errors="*{name}" >
-                                        </div><br>
+                                        </div> -->
+                                        <input  class="form-control" type="text"
+                                        th:field="*{name}"
+                                        th:errorclass="is-invalid">
+                                        <div    class="text-danger" 
+                                                th:if="${#fields.hasErrors('name')}"  
+                                                th:errors="*{name}" >
+                                        </div>
+                                        <br>
 
                                         <label  for="text">E-mail</label><br>
                                         <input  type="text" class="form-control"
                                                 th:field="*{mail}"
-                                                th:classappend="${#fields.hasErrors('mail')} ? 'is-invalid' : ''">
+                                                th:errorclass="is-invalid">
                                         <div    class="text-danger" 
                                                 th:if="${#fields.hasErrors('mail')}"  
                                                 th:errors="*{mail}" >
@@ -41,16 +50,16 @@
                                         <label for="passwort">Passwort</label><br>
                                         <input  type="password" class="form-control" 
                                                 th:field="*{password}"
-                                                th:classappend="${#fields.hasErrors('password')} ? 'is-invalid' : ''">
+                                                th:errorclass="is-invalid">
                                         <div    class="text-danger" 
-                                        th:if="${#fields.hasErrors('password')}"  
-                                        th:errors="*{password}" >
+                                                th:if="${#fields.hasErrors('password')}"  
+                                                th:errors="*{password}" >
                                         </div> <br>
 
                                         <label for="geburtstag">Geburtstag</label><br>
                                         <input  type="date" class="form-control" 
                                                 th:field="*{birthday}"
-                                                th:classappend="${#fields.hasErrors('birthday')} ? 'is-invalid' : ''">
+                                                th:errorclass="is-invalid">
                                         <div    class="text-danger" 
                                                 th:if="${#fields.hasErrors('birthday')}"  
                                                 th:errors="*{birthday}" >
@@ -60,26 +69,28 @@
                         <div class="row">
                                 <div class="col-sm-6">
                                         <h4 th:text="|Mag (max ${maxwunsch})|">Mag</h4>
-                                        <input th:if="${#lists.size(formular.magList)} lt ${maxwunsch}" th:value="${mag}"
+                                        <input  th:if="${#lists.size(formular.magList)} lt ${maxwunsch}" 
+                                                th:value="${mag}"
                                                 type="text" class="form-control" name="mag" id="mag">
                                 </div>
                                 <div class="col-sm-6">
                                         <h4 th:text="|Mag nicht (max ${maxwunsch})|">Mag nicht</h4>
-                                        <input th:if="${#lists.size(formular.magNichtList)} lt ${maxwunsch}"
+                                        <input  th:if="${#lists.size(formular.magNichtList)} lt ${maxwunsch}"
                                                 th:value="${magNicht}" type="text" class="form-control" name="magNicht"
                                                 id="magNicht">
                                 </div>
                         </div>
                         <div class="row">
                                 <div class="col-sm-6">
-                                        <ul th:each="m : ${#lists.sort(formular.magList)}" 
+                                        <ul     th:each="m : ${#lists.sort(formular.magList)}" 
                                                 class="list-group">
                                                 <li th:text="${m}" class="list-group-item">Mag ich</li>
                                         </ul>
                                 </div>
                                 <div class="col-sm-6">
                                         <ul class="list-group">
-                                                <li th:each="mn : ${#lists.sort(formular.magNichtList)}" th:text="${mn}" class="list-group-item">Mag ich nicht</li>
+                                                <li     th:each="mn : ${#lists.sort(formular.magNichtList)}" 
+                                                        th:text="${mn}" class="list-group-item">Mag ich nicht</li>
                                         </ul> 
                                 </div>
                                 <div class="col-sm-12">
@@ -88,7 +99,7 @@
                                         </div>
                                 </div>
                         </div>
-                </div>
-        </form>
+        </div>
+</form> 
 </body>
 </html>

@@ -7,6 +7,7 @@ import java.util.Set;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 
+import de.hsrm.mi.web.projekt.validators.GutesPasswort;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
@@ -20,9 +21,10 @@ public class BenutzerFormular {
     private String name = "";
     @Email(message="Liebe Gr\u00fc\u00dfe vom Mailer-Daemon!")
     private String mail = "";
+    @GutesPasswort
     private String password = "";
     @DateTimeFormat(iso=ISO.DATE)
-    @Past(message = "Zeitreisende werden hier diskriminiert. Bitte das Geburtstdatum deiner Gro\u00feeltern angeben. Danke.")
+    @Past(message = "Zeitreisende werden hier diskriminiert. Bitte das Geburtstdatum deiner Gro\u00dfeltern angeben. Danke.")
     private LocalDate birthday;
     private Set<String> magList = new HashSet<>();
     private Set<String> magNichtList = new HashSet<>();
@@ -95,6 +97,7 @@ public class BenutzerFormular {
 
     public void setPassword(String password) {
         this.password = password;
+
     }
 
     public void setBirthday(LocalDate birthday) {
