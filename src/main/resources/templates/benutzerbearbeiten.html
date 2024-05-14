@@ -21,21 +21,40 @@
                         <div class="row mt-4">
                                 <div class="col-sm-12 form-group">
                                         <label for="benutzerName">Name</label><br>
-                                        <input type="text" class="form-control" th:field="*{name}" name="benutzerName"
-                                                id="benutzerName">
-                                                <span th:if="${#fields.hasErrors('name')}"  th:errors="*{name}">x</span><br>
+                                        <input  class="form-control" type="text"
+                                                th:field="*{name}"
+                                                th:classappend="${#fields.hasErrors('name')} ? 'is-invalid' : ''">
+                                        <div    class="text-danger" 
+                                                th:if="${#fields.hasErrors('name')}"  
+                                                th:errors="*{name}" >
+                                        </div><br>
 
-                                        <label for="email">E-mail</label><br>
-                                        <input type="email" class="form-control" th:field="*{mail}" name="email"
-                                                id="email"><br>
+                                        <label  for="text">E-mail</label><br>
+                                        <input  type="text" class="form-control"
+                                                th:field="*{mail}"
+                                                th:classappend="${#fields.hasErrors('mail')} ? 'is-invalid' : ''">
+                                        <div    class="text-danger" 
+                                                th:if="${#fields.hasErrors('mail')}"  
+                                                th:errors="*{mail}" >
+                                        </div> <br>
 
                                         <label for="passwort">Passwort</label><br>
-                                        <input type="text" class="form-control" th:field="*{password}"
-                                                name="passwort" id="passwort"><br>
+                                        <input  type="password" class="form-control" 
+                                                th:field="*{password}"
+                                                th:classappend="${#fields.hasErrors('password')} ? 'is-invalid' : ''">
+                                        <div    class="text-danger" 
+                                        th:if="${#fields.hasErrors('password')}"  
+                                        th:errors="*{password}" >
+                                        </div> <br>
 
                                         <label for="geburtstag">Geburtstag</label><br>
-                                        <input type="date" class="form-control" th:field="*{birthday}" name="geburtstag"
-                                                id="geburtstag"><br>
+                                        <input  type="date" class="form-control" 
+                                                th:field="*{birthday}"
+                                                th:classappend="${#fields.hasErrors('birthday')} ? 'is-invalid' : ''">
+                                        <div    class="text-danger" 
+                                                th:if="${#fields.hasErrors('birthday')}"  
+                                                th:errors="*{birthday}" >
+                                        </div> <br>
                                 </div>
                         </div>
                         <div class="row">
