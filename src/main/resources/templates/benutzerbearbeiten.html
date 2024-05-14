@@ -13,7 +13,8 @@
         <header>
                 <div class="mb-4 p-5 jumbotron bg-primary text-center text-white rounded">
                         <h1>Die MI fahrzentrale</h1>
-                        <h4 th:text="|Benutzerprofil ${benutzerID} bearbeiten|">Benutzerprofil bearbeiten</h4>
+                        <!-- <h4 th:text="|Benutzerprofil ${benutzerID} bearbeiten|">Benutzerprofil bearbeiten</h4> -->
+                        <h4 th:text="|#{form.userprofile} ${benutzerID}|">Benutzerprofil bearbeiten</h4>
                 </div>
         </header>
 
@@ -21,7 +22,7 @@
                 <form th:method="POST" th:object="${formular}" th:action="@{#}" name="benutzerProfil">
                         <div class="row mt-4">
                                 <div class="col-sm-12 form-group">
-                                        <label for="benutzerName">Name</label><br>
+                                        <label th:text="#{form.name}">Name</label><br>
                                         <!-- <input  class="form-control" type="text"
                                                 th:field="*{name}"
                                                 th:classappend="${#fields.hasErrors('name')} ? 'is-invalid' : ''">
