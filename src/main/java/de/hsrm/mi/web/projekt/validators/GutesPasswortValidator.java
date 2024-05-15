@@ -13,7 +13,7 @@ public class GutesPasswortValidator implements ConstraintValidator<GutesPasswort
 
     @Override
     public boolean isValid(String input, ConstraintValidatorContext context) {
-        return hasSiebzehn(input) || has17(input) || input == null;
+        return hasSiebzehn(input) || has17(input) || input == null || input.isEmpty();
     }
     public boolean hasSiebzehn(String value){
         return Pattern.compile("siebzehn", Pattern.CASE_INSENSITIVE)
