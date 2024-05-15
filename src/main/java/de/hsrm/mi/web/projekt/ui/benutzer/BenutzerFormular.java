@@ -15,15 +15,15 @@ import jakarta.validation.constraints.Size;
 
 public class BenutzerFormular {
 
-    @NotBlank(message="{form.name.noname_error}")
-    @Size(min=3, max=80, message="{form.name.error}")
+    @NotBlank(message="{benutzer.name.ungesetzt}")
+    @Size(min=3, max=80, message="{benutzer.name.zeichenlaenge}")
     private String name = "";
-    @Email(message="{form.mail.error}")
+    @Email(message="{benutzer.email.falschesformat}")
     private String mail = "";
     @GutesPasswort
     private String password = "";
     @DateTimeFormat(iso=ISO.DATE)
-    @Past(message = "{form.birthday.error}")
+    @Past(message = "{benutzer.geburtstag.zukunft}")
     private LocalDate birthday;
     private Set<String> magList = new HashSet<>();
     private Set<String> magNichtList = new HashSet<>();

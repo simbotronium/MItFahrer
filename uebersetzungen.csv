@@ -14,9 +14,13 @@ benutzer.passwort;Passwort;Password;Wachtwoord
 benutzer.geburtstag;Geburtstag;Date of birth;Geboortedatum
 benutzer.magich;Ich mag;I like;Ik hou van
 benutzer.magichnicht;Ich mag nicht;I don't like;Ik hou niet van
-benutzerprofil.titel;Benutzerprofil {0} bearbeiten;Edit user profile {0};Gebruikersprofiel {0} bewerken
+benutzerprofil.titel;Benutzerprofil {benutzerID} bearbeiten;Edit user profile {benutzerID};Gebruikersprofiel {benutzerID} bewerken
 benutzerprofil.titel.neu;Neues Benutzerprofil;New user profile;Nieuw gebruikersprofiel
 benutzer.passwort.ungesetzt;Passwort wurde noch nicht gesetzt;The password has not yet been set;Het wachtwoord is nog niet ingesteld
+benutzer.name.ungesetzt;Hast du keinen Namen?;Don't you have a name?;Heb je geen naam?
+benutzer.name.zeichenlaenge;Der name muss mindestens {min} und höchstens {max} lang sein!;The name must be at least {min} and at most {max} long!;De naam moet minstens {min} en hoogstens {max} lang zijn!
+benutzer.email.falschesformat;Liebe Grüße vom Mailer-Daemon!;Greetings from the mailer daemon!;Groeten van de Mailer Daemon!
+benutzer.geburtstag.zukunft;Time travelers are discriminated against here! Please enter the date of birth of your parents. Thank you very much.;Tijdreizigers worden hier gediscrimineerd! Voer de geboortedatum van je ouders in. Hartelijk dank.
 
 # GutesPasswort-Validator
 gutespasswort.fehler;Das ist kein gutes Passwort;This is not a good password;Dit is geen goed wachtwoord
