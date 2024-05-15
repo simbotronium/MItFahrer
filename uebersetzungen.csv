@@ -20,7 +20,7 @@ benutzer.passwort.ungesetzt;Passwort wurde noch nicht gesetzt;The password has n
 benutzer.name.ungesetzt;Hast du keinen Namen?;Don't you have a name?;Heb je geen naam?
 benutzer.name.zeichenlaenge;Der name muss mindestens {min} und höchstens {max} lang sein!;The name must be at least {min} and at most {max} long!;De naam moet minstens {min} en hoogstens {max} lang zijn!
 benutzer.email.falschesformat;Liebe Grüße vom Mailer-Daemon!;Greetings from the mailer daemon!;Groeten van de Mailer Daemon!
-benutzer.geburtstag.zukunft;Time travelers are discriminated against here! Please enter the date of birth of your parents. Thank you very much.;Tijdreizigers worden hier gediscrimineerd! Voer de geboortedatum van je ouders in. Hartelijk dank.
+benutzer.geburtstag.zukunft;Zeitreisende werden hier diskriminiert! Bitte gib das Geburtsdatum deiner Eltern ein. Danke sehr.;Time travelers are discriminated against here! Please enter the date of birth of your parents. Thank you very much.;Tijdreizigers worden hier gediscrimineerd! Voer de geboortedatum van je ouders in. Hartelijk dank.
 
 # GutesPasswort-Validator
 gutespasswort.fehler;Das ist kein gutes Passwort;This is not a good password;Dit is geen goed wachtwoord
