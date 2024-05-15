@@ -1,0 +1,12 @@
+
+<header th:fragment="kopf">
+    <div class="mb-4 p-5 jumbotron bg-primary text-center text-white rounded">
+        <h1>Die MI fahrzentrale</h1>
+        <!-- <h4 th:text="|Benutzerprofil ${benutzerID} bearbeiten|">Benutzerprofil bearbeiten</h4> -->
+        <h4 th:text="|#{kopf.benutzer} ${benutzerID}|">Edit Userprofile</h4>
+    </div>
+</header>
+
+<footer th:fragment="fuss">
+    <p>Hallo hier ist ein Fuß</p>
+</footer>
