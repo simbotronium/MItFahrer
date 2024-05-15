@@ -1,3 +1,5 @@
+import shutil
+
 with open("uebersetzungen.csv") as file:
     for line in file:
         words = line.split(";")
@@ -10,5 +12,9 @@ with open("uebersetzungen.csv") as file:
         if not words[0].startswith("\n") and not words[0].startswith("#") and len(words) != 0:
             for i, l in enumerate(languages):
                 f = open("src/main/resources/messages_" + l.strip() + ".properties", "a")
-                f.write(words[0] + "=" + words[i] + "\n")
+                f.write(words[0] + "=" + words[i+1] + "\n")
 
+if "en" in languages or "en\n" in languages:
+    shutil.copy("src/main/resources/messages_en.properties", "src/main/resources/messages.properties")
+else:
+    shutil.copy("src/main/resources/messages_" + languages[0].strip() + ".properties", "src/main/resources/messages.properties")
