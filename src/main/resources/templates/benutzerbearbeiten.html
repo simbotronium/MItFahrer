@@ -39,7 +39,7 @@
                                         </div>
                                         <br>
 
-                                        <label  for="text">E-mail</label><br>
+                                        <label  th:text="#{form.mail}">E-mail</label><br>
                                         <input  type="text" class="form-control"
                                                 th:field="*{mail}"
                                                 th:errorclass="is-invalid">
@@ -48,7 +48,7 @@
                                                 th:errors="*{mail}" >
                                         </div> <br>
 
-                                        <label for="passwort">Passwort</label><br>
+                                        <label th:text="#{form.password}">Password</label><br>
                                         <input  type="password" class="form-control" 
                                                 th:field="*{password}"
                                                 th:errorclass="is-invalid">
@@ -57,7 +57,7 @@
                                                 th:errors="*{password}" >
                                         </div> <br>
 
-                                        <label for="geburtstag">Geburtstag</label><br>
+                                        <label th:text="#{form.birthday}">Birthday</label><br>
                                         <input  type="date" class="form-control" 
                                                 th:field="*{birthday}"
                                                 th:errorclass="is-invalid">
@@ -69,13 +69,13 @@
                         </div>
                         <div class="row">
                                 <div class="col-sm-6">
-                                        <h4 th:text="|Mag (max ${maxwunsch})|">Mag</h4>
+                                        <h4 th:text="|#{form.like} (max ${maxwunsch})|">Mag</h4>
                                         <input  th:if="${#lists.size(formular.magList)} lt ${maxwunsch}" 
                                                 th:value="${mag}"
                                                 type="text" class="form-control" name="mag" id="mag">
                                 </div>
                                 <div class="col-sm-6">
-                                        <h4 th:text="|Mag nicht (max ${maxwunsch})|">Mag nicht</h4>
+                                        <h4 th:text="|#{form.dislike} (max ${maxwunsch})|">Mag nicht</h4>
                                         <input  th:if="${#lists.size(formular.magNichtList)} lt ${maxwunsch}"
                                                 th:value="${magNicht}" type="text" class="form-control" name="magNicht"
                                                 id="magNicht">
