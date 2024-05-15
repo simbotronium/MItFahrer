@@ -13,7 +13,7 @@ import jakarta.validation.Payload;
 @Retention(RetentionPolicy.RUNTIME)
 @Constraint(validatedBy = GutesPasswortValidator.class)
 public @interface GutesPasswort {
-    String message() default "{form.password.error}";
+    String message() default "{gutespasswort.fehler}";
     Class<?>[] groups() default{};
     Class<? extends Payload>[] payload() default{};
 }
