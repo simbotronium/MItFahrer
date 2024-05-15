@@ -11,13 +11,7 @@
 </head>
 <body>
         <header th:replace="~{fragments/kopffuss :: kopf}">
-                <div class="mb-4 p-5 jumbotron bg-primary text-center text-white rounded">
-                        <h1>Die MI fahrzentrale</h1>
-                        <!-- <h4 th:text="|Benutzerprofil ${benutzerID} bearbeiten|">Benutzerprofil bearbeiten</h4> -->
-                        <h4 th:text="|#{kopf.benutzer} ${benutzerID}|">Edit Userprofile</h4>
-                </div>
         </header>
-
         <div class="container">
                 <form th:method="POST" th:object="${formular}" th:action="@{#}" name="benutzerProfil">
                         <div class="row mt-4">
@@ -101,6 +95,8 @@
                                 </div>
                         </div>
         </div>
-</form> 
+</form>
+<footer th:replace="~{fragments/kopffuss :: fuss}">
+</footer> 
 </body>
 </html>

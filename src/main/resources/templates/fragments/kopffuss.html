@@ -1,12 +1,35 @@
-
 <header th:fragment="kopf">
-    <div class="mb-4 p-5 jumbotron bg-primary text-center text-white rounded">
+    <div class="p-5 jumbotron bg-primary text-center text-white rounded">
         <h1>Die MI fahrzentrale</h1>
-        <!-- <h4 th:text="|Benutzerprofil ${benutzerID} bearbeiten|">Benutzerprofil bearbeiten</h4> -->
         <h4 th:text="|#{kopf.benutzer} ${benutzerID}|">Edit Userprofile</h4>
     </div>
+    <nav class="mb-4 navbar navbar-expand-sm bg-light">
+        <div class="container-fluid d-flex justify-content-end">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">DE</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">EN</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">NL</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
 </header>
-
 <footer th:fragment="fuss">
-    <p>Hallo hier ist ein Fuß</p>
+    <div class="row mt-5">
+        <div class="footer text-center p-4 bg-light">
+            <ul class="nav d-flex justify-content-center">
+                <li class="nav-item">
+                    <a class="nav-link" href="#" th:text="#{fuss.impressum}"></a>    
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" th:text="#{fuss.kontakt}"></a>
+                </li>
+            </ul>
+        </div>
+    </div>
 </footer>
