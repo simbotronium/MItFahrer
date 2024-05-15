@@ -14,7 +14,5 @@ with open("uebersetzungen.csv") as file:
                 f = open("src/main/resources/messages_" + l.strip() + ".properties", "a")
                 f.write(words[0] + "=" + words[i+1] + "\n")
 
-if "en" in languages or "en\n" in languages:
-    shutil.copy("src/main/resources/messages_en.properties", "src/main/resources/messages.properties")
-else:
-    shutil.copy("src/main/resources/messages_" + languages[0].strip() + ".properties", "src/main/resources/messages.properties")
+
+shutil.copy("src/main/resources/messages_" + languages[0].strip() + ".properties", "src/main/resources/messages.properties")
