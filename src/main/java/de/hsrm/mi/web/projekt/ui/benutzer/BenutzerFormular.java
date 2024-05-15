@@ -15,7 +15,7 @@ import jakarta.validation.constraints.Size;
 
 public class BenutzerFormular {
 
-    @NotBlank
+    @NotBlank(message="{form.name.noname_error}")
     @Size(min=3, max=80, message="{form.name.error}")
     private String name = "";
     @Email(message="{form.mail.error}")
