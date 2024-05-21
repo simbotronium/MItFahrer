@@ -1,10 +1,22 @@
 package de.hsrm.mi.web.projekt.entities.benutzer;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
+
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
+
+import de.hsrm.mi.web.projekt.validators.GutesPasswort;
+import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.Version;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Past;
+import jakarta.validation.constraints.Size;
 
 @Entity
 public class Benutzer implements Serializable {
@@ -15,48 +27,96 @@ public class Benutzer implements Serializable {
     @Version
     private long version;
 
-    private String name;
-    private String email;
-    private String passwort;
-    private LocalDate geburtstag;
+    @NotBlank(message="{benutzer.name.ungesetzt}")
+    @Size(min=3, max=80, message="{benutzer.name.zeichenlaenge}")
+    private String name = "";
+    @NotBlank
+    @Email(message="{benutzer.email.falschesformat}")
+    private String mail = "";
+    @NotBlank
+    @GutesPasswort
+    private String password = "";
+    @NotBlank
+    @DateTimeFormat(iso=ISO.DATE)
+    @Past(message = "{benutzer.geburtstag.zukunft}")
+    private LocalDate birthday;
+    @ElementCollection
+    private Set<String> magList = new HashSet<>();
+    @ElementCollection
+    private Set<String> magNichtList = new HashSet<>();
+    private String mag;
+    private String magNicht;
 
-    public long getId() {
-        return id;
+    public Set<String> getMagList() {
+        return this.magList;
     }
 
-    public long getVersion() {
-        return version;
+    public Set<String> getMagNichtList() {
+        return this.magNichtList;
+    }
+
+    public void setMagList(Set <String> _mag) {
+        this.magList = _mag;
+    }
+
+    public void setMagNichtList(Set <String> magNicht) {
+        this.magNichtList = magNicht;
+    }
+
+    public void addMag(String _mag) {
+        this.magList.add(_mag);
+    }
+
+    public void addMagNicht(String _magNicht) {
+        this.magNichtList.add(_magNicht);
     }
 
     public String getName() {
         return name;
     }
 
+    public String getMag() {
+        return this.mag;
+    }
+
+    public String getMagNicht() {
+        return this.magNicht;
+    }
+
+    public void setMag(String mag) {
+        this.mag = mag;
+    }
+
+    public void setMagNicht(String magNicht) {
+        this.magNicht = magNicht;
+    }
+
+    public String getMail() {
+        return mail;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public LocalDate getBirthday() {
+        return birthday;
+    }
+
     public void setName(String name) {
         this.name = name;
     }
 
-    public String getEmail() {
-        return email;
+    public void setMail(String mail) {
+        this.mail = mail;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setPassword(String password) {
+        this.password = password;
+
     }
 
-    public String getPasswort() {
-        return passwort;
-    }
-
-    public void setPasswort(String passwort) {
-        this.passwort = passwort;
-    }
-
-    public LocalDate getGeburtstag() {
-        return geburtstag;
-    }
-
-    public void setGeburtstag(LocalDate geburtstag) {
-        this.geburtstag = geburtstag;
+    public void setBirthday(LocalDate birthday) {
+        this.birthday = birthday;
     }
 }

@@ -7,6 +7,7 @@ import java.util.Set;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 
+import de.hsrm.mi.web.projekt.entities.benutzer.Benutzer;
 import de.hsrm.mi.web.projekt.validators.GutesPasswort;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -18,10 +19,13 @@ public class BenutzerFormular {
     @NotBlank(message="{benutzer.name.ungesetzt}")
     @Size(min=3, max=80, message="{benutzer.name.zeichenlaenge}")
     private String name = "";
+    @NotBlank
     @Email(message="{benutzer.email.falschesformat}")
     private String mail = "";
+    @NotBlank
     @GutesPasswort
     private String password = "";
+    @NotBlank
     @DateTimeFormat(iso=ISO.DATE)
     @Past(message = "{benutzer.geburtstag.zukunft}")
     private LocalDate birthday;
@@ -29,6 +33,22 @@ public class BenutzerFormular {
     private Set<String> magNichtList = new HashSet<>();
     private String mag;
     private String magNicht;
+
+    public void toBenutzer(Benutzer b) {
+        b.setName(name);
+        b.setMail(mail);
+        b.setBirthday(birthday);
+        b.setMagList(magList);
+        b.setMagNichtList(magNichtList);
+    }
+    
+    public void fromBenutzer(Benutzer b) {
+        this.name = b.getName();
+        this.mail = b.getMail();
+        this.birthday = b.getBirthday();
+        this.magList = b.getMagList();
+        this.magNichtList = b.getMagNichtList();
+    }
 
     public Set<String> getMagList() {
         return this.magList;

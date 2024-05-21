@@ -16,9 +16,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-
-
-
 @Controller
 @RequestMapping("/benutzer")
 @SessionAttributes (names = {"formular", "benutzerID", "maxwunsch"})
