@@ -28,11 +28,16 @@ public class BenutzerController {
     public void initFormular(Model m) {
         m.addAttribute("formular", new BenutzerFormular());
         m.addAttribute("maxwunsch", Integer.toString(maxwunsch));
+
+        logger.info("maxwunsch = {}", maxwunsch);
     }
 
     @GetMapping("/{zahl}")
     public String getMethodName(@PathVariable("zahl") Long zahl, Model m) {
         m.addAttribute("benutzerID", zahl);
+        
+        logger.info("benutzerID = {}", zahl);
+
         return "benutzerbearbeiten";
     }
 
