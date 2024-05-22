@@ -19,6 +19,7 @@ import org.slf4j.LoggerFactory;
 @Controller
 @RequestMapping("/benutzer")
 @SessionAttributes (names = {"formular", "benutzerID", "maxwunsch"})
+
 public class BenutzerController {
 
     Logger logger = LoggerFactory.getLogger(this.getClass());

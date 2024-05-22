@@ -15,9 +15,9 @@ import de.hsrm.mi.web.projekt.entities.benutzer.BenutzerRepository;
 @Service
 public class BenutzerServiceImpl implements BenutzerService{
     Logger logger = LoggerFactory.getLogger(BenutzerServiceImpl.class);
-    @Autowired
-    private BenutzerRepository benutzerRepository;
-    @Autowired
+    
+    private final BenutzerRepository benutzerRepository;
+    
     public BenutzerServiceImpl(BenutzerRepository br) {
         this.benutzerRepository = br;
     }
@@ -29,7 +29,12 @@ public class BenutzerServiceImpl implements BenutzerService{
 
     @Override
     public Optional<Benutzer> holeBenutzerMitId(long id) {
-        return this.benutzerRepository.findById(id);
+        Optional<Benutzer> oBenutzerMitId = this.benutzerRepository.findById(id);
+        if(oBenutzerMitId.isEmpty()) {
+            logger.debug("id nicht gefunden");
+            return Optional.empty();
+        }
+        return oBenutzerMitId;
     }
 
     @Override
