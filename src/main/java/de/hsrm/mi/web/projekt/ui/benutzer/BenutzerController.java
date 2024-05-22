@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.hibernate.dialect.SybaseASEDialect;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -37,6 +38,7 @@ public class BenutzerController {
     public void initFormular(Model m) {
         m.addAttribute("formular", new BenutzerFormular());
         m.addAttribute("maxwunsch", Integer.toString(maxwunsch));
+        m.addAttribute("info", "");
 
         logger.info("maxwunsch = {}", maxwunsch);
     }
@@ -75,7 +77,13 @@ public class BenutzerController {
         }
 
         form.toBenutzer(benutzer);
-        m.addAttribute("benutzer", benutzerService.speichereBenutzer(benutzer));
+        try {
+            m.addAttribute("benutzer", benutzerService.speichereBenutzer(benutzer));
+            throw new Exception("hat geklappt");
+        } catch(Exception e) {
+            logger.error(e.getMessage(), e);
+            m.addAttribute("info", e.getMessage());
+        }
         return "benutzerbearbeiten";
     }
     
