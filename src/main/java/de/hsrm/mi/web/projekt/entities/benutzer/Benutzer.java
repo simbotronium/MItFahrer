@@ -15,6 +15,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Version;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Size;
 
@@ -36,7 +37,7 @@ public class Benutzer implements Serializable {
     @NotBlank
     @GutesPasswort
     private String password = "";
-    @NotBlank
+    @NotNull
     @DateTimeFormat(iso=ISO.DATE)
     @Past(message = "{benutzer.geburtstag.zukunft}")
     private LocalDate birthday;
@@ -119,4 +120,15 @@ public class Benutzer implements Serializable {
     public void setBirthday(LocalDate birthday) {
         this.birthday = birthday;
     }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    
+
 }

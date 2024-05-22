@@ -5,7 +5,6 @@ import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -29,22 +28,26 @@ public class BenutzerServiceImpl implements BenutzerService{
 
     @Override
     public Optional<Benutzer> holeBenutzerMitId(long id) {
-        Optional<Benutzer> oBenutzerMitId = this.benutzerRepository.findById(id);
-        if(oBenutzerMitId.isEmpty()) {
-            logger.debug("id nicht gefunden");
-            return Optional.empty();
-        }
-        return oBenutzerMitId;
+        return this.benutzerRepository.findById(id);
     }
 
     @Override
     public Benutzer speichereBenutzer(Benutzer b) {
-        //Wo ist der Unterschied zum hereingereichten b?????????heeeelp meeee
+        logger.info("Speichere Benutzer {}" ,b.getName());
+
+        /* 
+        if (this.benutzerRepository.findById(b.getId()).isPresent() && 
+            (b.getPassword().isEmpty() || b.getPassword() == null)) {
+            b.setPassword(this.benutzerRepository.findById(b.getId()).get().getPassword());
+        }
+        */
+        
         return this.benutzerRepository.save(b);
     }
 
     @Override
     public void loescheBenutzerMitId(long id) {
+        logger.info("Lösche Benutzer mit ID {}", id);
         this.benutzerRepository.deleteById(id);
     }
 

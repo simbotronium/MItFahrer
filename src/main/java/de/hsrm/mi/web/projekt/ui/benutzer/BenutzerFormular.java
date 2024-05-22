@@ -11,6 +11,7 @@ import de.hsrm.mi.web.projekt.entities.benutzer.Benutzer;
 import de.hsrm.mi.web.projekt.validators.GutesPasswort;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Size;
 
@@ -25,7 +26,7 @@ public class BenutzerFormular {
     @NotBlank
     @GutesPasswort
     private String password = "";
-    @NotBlank
+    @NotNull
     @DateTimeFormat(iso=ISO.DATE)
     @Past(message = "{benutzer.geburtstag.zukunft}")
     private LocalDate birthday;
