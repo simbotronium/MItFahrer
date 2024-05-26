@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.hibernate.dialect.SybaseASEDialect;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -22,10 +21,11 @@ import java.util.Optional;
 
 @Controller
 @RequestMapping("/benutzer")
-@SessionAttributes (names = {"formular", "benutzerID", "maxwunsch", "benutzer"})
+@SessionAttributes(names = { "formular", "benutzerID", "maxwunsch", "benutzer" })
 
 public class BenutzerController {
-
+    Benutzer benutzer;
+    BenutzerFormular benutzerFormular;
     Logger logger = LoggerFactory.getLogger(this.getClass());
     private final int maxwunsch = 5;
     private final BenutzerService benutzerService;
@@ -38,22 +38,25 @@ public class BenutzerController {
     public void initFormular(Model m) {
         m.addAttribute("formular", new BenutzerFormular());
         m.addAttribute("maxwunsch", Integer.toString(maxwunsch));
-        m.addAttribute("info", "");
-
         logger.info("maxwunsch = {}", maxwunsch);
     }
 
-    @GetMapping("/{zahl}")
-    public String getMethodName(@PathVariable("zahl") Long zahl, Model m) {
-        m.addAttribute("benutzerID", zahl);
-        logger.info("benutzerID = {}", zahl);
+    @GetMapping("/{id}")
+    public String getMethodName(@PathVariable("id") Long id, Model m) {
+        Optional<Benutzer> optBenutzer = this.benutzerService.holeBenutzerMitId(id);
 
-        Optional<Benutzer> optBenutzer = this.benutzerService.holeBenutzerMitId(zahl);
-        Benutzer benutzer = new Benutzer();
-        BenutzerFormular benutzerFormular = new BenutzerFormular();
-        if (zahl == 0 || optBenutzer.isEmpty()) {
-            logger.info("BenutzerId nicht gefunden!");
+        m.addAttribute("benutzerID", id);
+        logger.info("benutzerID = {}", id);        
 
+        if (id == 0) {
+            logger.info("Neuer Benutzer");
+            benutzerFormular = new BenutzerFormular();
+            benutzer = new Benutzer();
+        if(optBenutzer.isEmpty() && id > 0) {
+            logger.info("Id nicht gefunden") {
+
+            }
+        }
         } else {
             benutzer = optBenutzer.get();
             benutzerFormular.fromBenutzer(benutzer);
@@ -64,27 +67,23 @@ public class BenutzerController {
         return "benutzerbearbeiten";
     }
 
-    @PostMapping("/{zahl}")
+    @PostMapping("/{id}")
     public String postMethodName(@Valid @ModelAttribute("formular") BenutzerFormular form, BindingResult result,
-     Model m, @ModelAttribute("benutzer") Benutzer benutzer) {
-        if (form.getMag() != null && !form.getMag().equals("")) form.getMagList().add(form.getMag());
-        if (form.getMagNicht() != null && !form.getMagNicht().equals("")) form.getMagNichtList().add(form.getMagNicht());
+            Model m, @ModelAttribute("benutzer") Benutzer benutzer) {
+        if (form.getMag() != null && !form.getMag().equals(""))
+            form.getMagList().add(form.getMag());
+        if (form.getMagNicht() != null && !form.getMagNicht().equals(""))
+            form.getMagNichtList().add(form.getMagNicht());
         if (form.getPassword().isEmpty() || form.getPassword() == null) {
             result.rejectValue("password", "benutzer.passwort.ungesetzt", "Passwort wurde noch nicht gesetzt");
         }
-        if(result.hasErrors()) {
+        if (result.hasErrors()) {
             return "benutzerbearbeiten";
         }
 
         form.toBenutzer(benutzer);
-        try {
-            m.addAttribute("benutzer", benutzerService.speichereBenutzer(benutzer));
-            throw new Exception("hat geklappt");
-        } catch(Exception e) {
-            logger.error(e.getMessage(), e);
-            m.addAttribute("info", e.getMessage());
-        }
+        m.addAttribute("benutzer", benutzerService.speichereBenutzer(benutzer));
         return "benutzerbearbeiten";
     }
-    
+
 }
