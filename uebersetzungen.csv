@@ -1,61 +1,60 @@
-propertyname;de;en;nl
+propertyname;de;en;nl;vnm
 
 # Kopf-/Fusszeile
-kopf.benutzer;Benutzer;Users;Gebruikers
-kopf.touren;Touren;Tours;Toeren
-kopf.orte;Orte;Places;Plaatsen
-fuss.impressum;Impressum;imprint;afdruk
-fuss.kontakt;Kontakt;contact;contact
+kopf.benutzer;Benutzer;Users;Gebruikers;Người dùng
+kopf.touren;Touren;Tours;Toeren;Chuyến tham quan
+kopf.orte;Orte;Places;Plaatsen;Địa điểm
+fuss.impressum;Impressum;imprint;afdruk;Dấu ấn
+fuss.kontakt;Kontakt;contact;contact;Liên hệ
 
 # Benutzer-Formular
-benutzer.name;Name;name;naam
-benutzer.email;E-Mail;E-mail;E-mail
-benutzer.passwort;Passwort;password;wachtwoord
-benutzer.geburtstag;Geburtstag;date of birth;geboortedatum
-benutzer.magich;Ich mag;I like;Ik hou van
-benutzer.magichnicht;Ich mag nicht;I don't like;Ik hou niet van
-benutzerprofil.titel;Benutzerprofil {0} bearbeiten;Edit user profile {0};Gebruikersprofiel {0} bewerken
-benutzerprofil.titel.neu;Neues Benutzerprofil;New user profile;Nieuw gebruikersprofiel
-benutzer.passwort.ungesetzt;Passwort wurde noch nicht gesetzt;The password has not yet been set;Het wachtwoord is nog niet ingesteld
+benutzer.name;Name;name;naam;Tên
+benutzer.email;E-Mail;E-mail;E-mail;E-mail
+benutzer.passwort;Passwort;password;wachtwoord;Mật khẩu
+benutzer.geburtstag;Geburtstag;date of birth;geboortedatum;Ngày sinh
+benutzer.magich;Ich mag;I like;Ik hou van;Tôi thích
+benutzer.magichnicht;Ich mag nicht;I don't like;Ik hou niet van;Tôi không thích
+benutzerprofil.titel;Benutzerprofil {0} bearbeiten;Edit user profile {0};Gebruikersprofiel {0} bewerken;Chỉnh sửa hồ sơ người dùng {0}
+benutzerprofil.titel.neu;Neues Benutzerprofil;New user profile;Nieuw gebruikersprofiel;Hồ sơ người dùng mới
+benutzer.passwort.ungesetzt;Passwort wurde noch nicht gesetzt;The password has not yet been set;Het wachtwoord is nog niet ingesteld;Mật khẩu chưa được đặt
 
 # GutesPasswort-Validator
-gutespasswort.fehler;Das ist kein gutes Passwort;This is not a good password;Dit is geen goed wachtwoord
+gutespasswort.fehler;Das ist kein gutes Passwort;This is not a good password;Dit is geen goed wachtwoord;Đây không phải là mật khẩu tốt
 
 # Benutzer-Liste
-benutzerliste.titel;Benutzerliste;all users;alle gebruikers
-benutzerliste.eintrag.bearbeiten;bearbeiten;edit;bewerken
-benutzerliste.eintrag.loeschen;löschen;delete;wissen
-benutzerliste.neu;Neuer Benutzer;new user;nieuw gebruiker
-benutzerliste.anzahl.angebote;Angebote;offerings;aanbiedingen
+benutzerliste.titel;Benutzerliste;all users;alle gebruikers;Danh sách người dùng
+benutzerliste.eintrag.bearbeiten;bearbeiten;edit;bewerken;chỉnh sửa
+benutzerliste.eintrag.loeschen;löschen;delete;wissen;xóa
+benutzerliste.neu;Neuer Benutzer;new user;nieuw gebruiker;Người dùng mới
+benutzerliste.anzahl.angebote;Angebote;offerings;aanbiedingen;Cung cấp
 
 # Orte
-ortformular.titel;Ort {0} bearbeiten;Edit place {0};Plaats {0} bewerken
-ortformular.titel.neu;Neuen Ort anlegen;Add new place;Nieuwe plaats toevoegen
-ort.name;Ortsname;location name;plaatsnaam
-ort.geobreite;Breite;latitude;breedtegraad
-ort.geolaenge;Länge;longitude;lengtegraad
-ort.link.karte;Karte;map;kaart
+ortformular.titel;Ort {0} bearbeiten;Edit place {0};Plaats {0} bewerken;Chỉnh sửa địa điểm {0}
+ortformular.titel.neu;Neuen Ort anlegen;Add new place;Nieuwe plaats toevoegen;Thêm địa điểm mới
+ort.name;Ortsname;location name;plaatsnaam;Tên địa điểm
+ort.geobreite;Breite;latitude;breedtegraad;Vĩ độ
+ort.geolaenge;Länge;longitude;lengtegraad;Kinh độ
+ort.link.karte;Karte;map;kaart;Bản đồ
 
-ortsliste.titel;Orte;Places;Plaatsen
-ortsliste.eintrag.bearbeiten;bearbeiten;edit;bewerken
-ortsliste.eintrag.loeschen;löschen;delete;wissen
-ortsliste.eintrag.karte;Karte;map;kaartje
-ortsliste.neu;Neuer Ort;new place;nieuw plaats
+ortsliste.titel;Orte;Places;Plaatsen;Địa điểm
+ortsliste.eintrag.bearbeiten;bearbeiten;edit;bewerken;chỉnh sửa
+ortsliste.eintrag.loeschen;löschen;delete;wissen;xóa
+ortsliste.eintrag.karte;Karte;map;kaartje;Bản đồ
+ortsliste.neu;Neuer Ort;new place;nieuw plaats;Địa điểm mới
 
 # Tour
-tourformular.titel;Tour {0} bearbeiten;Edit tour {0};Toer {0} bewerken
-tourformular.titel.neu;Neue Tour;New tour;Nieuwe toer
-tour.anbieter;Anbieter;Driver;Chauffeur
-tour.abfahrdatetime;Abfahrtzeitpunkt;departure time;vertrektijd
-tour.preis;Preis (EUR);price (EUR);prijs (EUR)
-tour.plaetze;Plätze;seats;zitplaatsen
-tour.startort;Startort;starting location;start locatie
-tour.zielort;Zielort;destination;bestemming
-tour.fahrgastinfos;Fahrgastinformationen;passenger information;passagiersinformatie
-tour.auswahl.fehlt;Bitte treffen Sie eine Auswahl;please select an item;selecteer een artikel, aub
+tourformular.titel;Tour {0} bearbeiten;Edit tour {0};Toer {0} bewerken;Chỉnh sửa chuyến tham quan {0}
+tourformular.titel.neu;Neue Tour;New tour;Nieuwe toer;Chuyến tham quan mới
+tour.anbieter;Anbieter;Driver;Chauffeur;Nhà cung cấp
+tour.abfahrdatetime;Abfahrtzeitpunkt;departure time;vertrektijd;Thời gian khởi hành
+tour.preis;Preis (EUR);price (EUR);prijs (EUR);Giá (EUR)
+tour.plaetze;Plätze;seats;zitplaatsen;Chỗ ngồi
+tour.startort;Startort;starting location;start locatie;Điểm xuất phát
+tour.zielort;Zielort;destination;bestemming;Điểm đến
+tour.fahrgastinfos;Fahrgastinformationen;passenger information;passagiersinformatie;Thông tin hành khách
+tour.auswahl.fehlt;Bitte treffen Sie eine Auswahl;please select an item;selecteer een artikel, aub;Vui lòng chọn một mục
 
-tourliste.titel;Touren;Tours;Toeren
-tourliste.neu;Neue Tour;new tour;nieuw toer
-tourliste.eintrag.bearbeiten;bearbeiten;edit;bewerken
-tourliste.eintrag.loeschen;löschen;delete;wissen
-
+tourliste.titel;Touren;Tours;Toeren;Chuyến tham quan
+tourliste.neu;Neue Tour;new tour;nieuw toer;Chuyến tham quan mới
+tourliste.eintrag.bearbeiten;bearbeiten;edit;bewerken;chỉnh sửa
+tourliste.eintrag.loeschen;löschen;delete;wissen;xóa
