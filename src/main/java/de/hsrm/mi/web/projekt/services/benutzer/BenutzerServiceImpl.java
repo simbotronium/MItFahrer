@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import de.hsrm.mi.web.projekt.entities.benutzer.Benutzer;
 import de.hsrm.mi.web.projekt.entities.benutzer.BenutzerRepository;
@@ -29,11 +30,13 @@ public class BenutzerServiceImpl implements BenutzerService{
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Optional<Benutzer> holeBenutzerMitId(long id) {
         return this.benutzerRepository.findById(id);
     }
 
     @Override
+    @Transactional
     public Benutzer speichereBenutzer(Benutzer b) {
         logger.info("Speichere Benutzer {}" ,b.getName());
 
@@ -48,6 +51,7 @@ public class BenutzerServiceImpl implements BenutzerService{
     }
 
     @Override
+    @Transactional
     public void loescheBenutzerMitId(long id) {
         logger.info("Lösche Benutzer mit ID {}", id);
         this.benutzerRepository.deleteById(id);

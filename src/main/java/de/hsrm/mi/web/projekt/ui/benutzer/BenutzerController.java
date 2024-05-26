@@ -77,7 +77,7 @@ public class BenutzerController {
 
     @GetMapping
     public String getMethodName(Model m) {
-        // List<Benutzer> l = this.benutzerService.holeAlleBenutzer();
+        List<Benutzer> l = this.benutzerService.holeAlleBenutzer();
         m.addAttribute("benutzerliste", this.benutzerService.holeAlleBenutzer());
         return "benutzerliste";
     }
