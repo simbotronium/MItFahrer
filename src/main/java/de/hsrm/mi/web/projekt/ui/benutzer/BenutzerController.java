@@ -17,7 +17,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.List;
 import java.util.Optional;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @Controller
 @RequestMapping("/benutzer")
@@ -64,6 +67,15 @@ public class BenutzerController {
 
         return "benutzerbearbeiten";
     }
+
+    @GetMapping
+    public String getMethodName(Model m) {
+        List<Benutzer> l = this.benutzerService.holeAlleBenutzer();
+        System.out.println("hier liste: " + l);
+        m.addAttribute("benutzerliste", this.benutzerService.holeAlleBenutzer());
+        return "benutzerliste";
+    }
+    
 
     @PostMapping("/{id}")
     public String postMethodName(@Valid @ModelAttribute("formular") BenutzerFormular form, BindingResult result,
