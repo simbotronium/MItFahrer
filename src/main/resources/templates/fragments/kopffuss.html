@@ -5,6 +5,7 @@
         <h4 th:text="|#{kopf.benutzer} ${benutzerID}|" th:if="${benutzerID} != 0">Edit Userprofile</h4>
     </div>
     <nav class="mb-4 navbar navbar-expand-sm bg-light">
+        <a th:href="@{/benutzer}" class="nav-item nav-link">Benutzer</a>
         <div class="container-fluid d-flex justify-content-end">
             <ul class="navbar-nav">
                 <li class="nav-item">
