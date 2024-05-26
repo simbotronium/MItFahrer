@@ -13,12 +13,15 @@
         <header th:replace="~{fragments/kopffuss :: kopf}">
         </header>
         <h1>Benutzerliste</h1>
-        <table>
+        <table class="table">
             <tr th:each="benutzer : ${benutzerliste}">
                 <td th:text="${benutzer.id}"></td>
                 <td th:text="${benutzer.name}"></td>
                 <td th:text="${benutzer.mail}"></td>
+                <td><a th:href="@{/benutzer/{id}(id=${benutzer.id})}"><button class="button" th:action="@{benutzer/benutzer.id}">bearbeiten</button></a></td>
+                <td><a th:href="@{/benutzer/{id}/del(id=${benutzer.id})}"><button class="button" type="button">löschen</button></a></td>
             </tr>
         </table>
+        <a th:href="@{/benutzer/0}"><button class="button">Neuer Benutzer</button></a>
     </body>
 </html>

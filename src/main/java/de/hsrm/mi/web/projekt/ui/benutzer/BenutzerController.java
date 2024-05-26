@@ -28,7 +28,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 public class BenutzerController {
     Benutzer benutzer;
-    BenutzerFormular benutzerFormular;
+    BenutzerFormular benutzerFormular = new BenutzerFormular();
     Logger logger = LoggerFactory.getLogger(this.getClass());
     private final int maxwunsch = 5;
     private final BenutzerService benutzerService;
@@ -68,10 +68,17 @@ public class BenutzerController {
         return "benutzerbearbeiten";
     }
 
+    @GetMapping("/{id}/del")
+    public String deleteUser(Model m, @PathVariable("id") Long id) {
+        this.benutzerService.loescheBenutzerMitId(id);
+
+        return "redirect:/benutzer";
+    }
+    
+
     @GetMapping
     public String getMethodName(Model m) {
         List<Benutzer> l = this.benutzerService.holeAlleBenutzer();
-        System.out.println("hier liste: " + l);
         m.addAttribute("benutzerliste", this.benutzerService.holeAlleBenutzer());
         return "benutzerliste";
     }
