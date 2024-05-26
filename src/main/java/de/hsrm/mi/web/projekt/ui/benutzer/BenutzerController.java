@@ -48,15 +48,13 @@ public class BenutzerController {
         m.addAttribute("benutzerID", id);
         logger.info("benutzerID = {}", id);        
 
-        if (id == 0) {
+        if (id == 0 || optBenutzer.isEmpty()) {
             logger.info("Neuer Benutzer");
             benutzerFormular = new BenutzerFormular();
             benutzer = new Benutzer();
-        if(optBenutzer.isEmpty() && id > 0) {
-            logger.info("Id nicht gefunden") {
-
+            if(optBenutzer.isEmpty() && id > 0) {
+                logger.info("Id nicht gefunden");
             }
-        }
         } else {
             benutzer = optBenutzer.get();
             benutzerFormular.fromBenutzer(benutzer);
@@ -69,7 +67,7 @@ public class BenutzerController {
 
     @PostMapping("/{id}")
     public String postMethodName(@Valid @ModelAttribute("formular") BenutzerFormular form, BindingResult result,
-            Model m, @ModelAttribute("benutzer") Benutzer benutzer) {
+            Model m, @ModelAttribute("benutzer") Benutzer benutzer, @PathVariable("id") Long id) {
         if (form.getMag() != null && !form.getMag().equals(""))
             form.getMagList().add(form.getMag());
         if (form.getMagNicht() != null && !form.getMagNicht().equals(""))
@@ -82,7 +80,15 @@ public class BenutzerController {
         }
 
         form.toBenutzer(benutzer);
-        m.addAttribute("benutzer", benutzerService.speichereBenutzer(benutzer));
+        try {
+            m.addAttribute("benutzer", benutzerService.speichereBenutzer(benutzer));
+        } catch (Exception e) {
+            logger.error(e.getMessage(), e);
+            m.addAttribute("info", e.getMessage());
+        }
+        if (id == 0) {
+            return "redirect:/benutzer/" + benutzer.getId();
+        }
         return "benutzerbearbeiten";
     }
 
