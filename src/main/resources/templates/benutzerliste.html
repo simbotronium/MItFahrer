@@ -12,16 +12,16 @@
     <body>
         <header th:replace="~{fragments/kopffuss :: kopf}">
         </header>
-        <h1>Benutzerliste</h1>
+        <h1 th:text="#{benutzerliste.titel}">benutzerliste</h1>
         <table class="table">
             <tr th:each="benutzer : ${benutzerliste}">
                 <td th:text="${benutzer.id}"></td>
                 <td th:text="${benutzer.name}"></td>
                 <td th:text="${benutzer.mail}"></td>
-                <td><a th:href="@{/benutzer/{id}(id=${benutzer.id})}"><button class="button" th:action="@{benutzer/benutzer.id}">bearbeiten</button></a></td>
-                <td><a th:href="@{/benutzer/{id}/del(id=${benutzer.id})}"><button class="button" type="button">löschen</button></a></td>
+                <td><a th:href="@{/benutzer/{id}(id=${benutzer.id})}"><button th:text="#{benutzerliste.eintrag.bearbeiten}" class="button" th:action="@{benutzer/benutzer.id}">Bearbeiten</button></a></td>
+                <td><a th:href="@{/benutzer/{id}/del(id=${benutzer.id})}"><button th:text="#{benutzerliste.eintrag.loeschen}" class="button" type="button">Löschen</button></a></td>
             </tr>
         </table>
-        <a th:href="@{/benutzer/0}"><button class="button">Neuer Benutzer</button></a>
+        <a th:href="@{/benutzer/0}"><button th:text="#{benutzerliste.neu}" class="button">Neuer Benutzer</button></a>
     </body>
 </html>
