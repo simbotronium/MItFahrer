@@ -7,11 +7,13 @@ import java.util.Set;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 
+import de.hsrm.mi.web.projekt.entities.tour.Tour;
 import de.hsrm.mi.web.projekt.validators.GutesPasswort;
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Version;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -47,6 +49,14 @@ public class Benutzer implements Serializable {
     private Set<String> magNichtList = new HashSet<>();
     private String mag;
     private String magNicht;
+    @OneToMany(mappedBy = "anbieter")
+    private Set<Tour> angeboteneTouren = new HashSet<>();
+
+    public void add(Tour neueTour) {
+        this.angeboteneTouren.add(neueTour);
+        neueTour.setAnbieter(this);
+    }
+
 
     public Set<String> getMagList() {
         return this.magList;
