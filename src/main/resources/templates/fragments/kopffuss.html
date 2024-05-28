@@ -2,8 +2,8 @@
     <div class="p-5 jumbotron bg-primary text-center text-white rounded">
         <h1>Die MI fahrzentrale</h1>
         <!-- <h4 th:fragment="benutzerliste" th:if="">Benutzerliste</h4> -->
-        <h4 th:fragment="neuerBenutzer" th:if="${benutzerID} == 0">Neuer Benutzer</h4>
-        <h4 th:text="|#{kopf.benutzer} ${benutzerID}|" th:if="${benutzerID} != 0">Edit Userprofile</h4>
+        <!-- <h4 th:fragment="neuerBenutzer" th:if="${benutzerID} == 0">Neuer Benutzer</h4>
+        <h4 th:text="|#{kopf.benutzer} ${benutzerID}|" th:if="${benutzerID} != 0">Edit Userprofile</h4> -->
     </div>
     <nav class="mb-4 navbar navbar-expand-sm bg-light">
         <a th:href="@{/benutzer}" th:text="#{kopf.benutzer}" class="nav-item nav-link">Benutzer</a>
