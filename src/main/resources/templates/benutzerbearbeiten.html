@@ -14,7 +14,7 @@
 <body>
         <header th:replace="~{fragments/kopffuss :: kopf}">
         </header>
-        <div class="container text-center">
+        <div class="container text-center mt-4">
                 <h4 th:text="#{benutzerprofil.titel.neu}" th:if="${benutzerID} == 0">Neuer Benutzer</h4>
                 <h4 th:text="#{benutzerprofil.titel(${benutzerID})}" th:if="${benutzerID} != 0">Benutzer bearbeiten</h4>
         </div>

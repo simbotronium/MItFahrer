@@ -18,11 +18,11 @@ public class GutesPasswortValidator implements ConstraintValidator<GutesPasswort
     public boolean hasSiebzehn(String value){
         return Pattern.compile("siebzehn", Pattern.CASE_INSENSITIVE)
                         .matcher(value)
-                        .matches();
+                        .find();
     }
     public boolean has17(String value){
         return Pattern.compile("17")
                         .matcher(value)
-                        .matches();
+                        .find();
     }
 }
