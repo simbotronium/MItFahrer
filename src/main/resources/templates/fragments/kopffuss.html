@@ -1,31 +1,44 @@
 <header th:fragment="kopf">
     <div class="p-5 jumbotron bg-primary text-center text-white rounded">
         <h1>Die MI fahrzentrale</h1>
-        <!-- <h4 th:fragment="benutzerliste" th:if="">Benutzerliste</h4> -->
-        <!-- <h4 th:fragment="neuerBenutzer" th:if="${benutzerID} == 0">Neuer Benutzer</h4>
-        <h4 th:text="|#{kopf.benutzer} ${benutzerID}|" th:if="${benutzerID} != 0">Edit Userprofile</h4> -->
     </div>
-    <nav class="mb-4 navbar navbar-expand-sm bg-light">
-        <a th:href="@{/benutzer}" th:text="#{kopf.benutzer}" class="nav-item nav-link">Benutzer</a>
-        <div class="container-fluid d-flex justify-content-end">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" th:href="@{?sprache=de}">DE</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" th:href="@{?sprache=en}">EN</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" th:href="@{?sprache=nl}">NL</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" th:href="@{?sprache=vnm}">VNM</a>
-                </li>
-            </ul>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarNavDarkDropdown" aria-controls="navbarNavDarkDropdown" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a th:href="@{/benutzer}" th:text="#{kopf.benutzer}" class="nav-item nav-link">Benutzer</a>
+                    </li>
+                </ul>
+                <div class="collapse navbar-collapse justify-content-end">
+                    <ul class="navbar-nav">
+                        <li class="nav-item dropdown">
+                            <button th:text="#{kopf.sprache}" class="btn btn-light dropdown-toggle"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                Sprache
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-dark">
+                                <li><a class="dropdown-item" th:href="@{?sprache=de}">DE</a></li>
+                                <li><a class="dropdown-item" th:href="@{?sprache=en}">EN</a></li>
+                                <li><a class="dropdown-item" th:href="@{?sprache=nl}">NL</a></li>
+                                <li><a class="dropdown-item" th:href="@{?sprache=vnm}">VNM</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
     </nav>
     <div class="alert alert-danger text-center" th:if="${info != null && info != ''}" th:text="${info}"></div>
 </header>
+
 <footer th:fragment="fuss">
     <div class="row mt-5">
         <ul class="nav d-flex justify-content-center text-center p-4 bg-light fixed-bottom">
