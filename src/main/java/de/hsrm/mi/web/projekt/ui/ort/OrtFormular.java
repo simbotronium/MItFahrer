@@ -2,8 +2,7 @@ package de.hsrm.mi.web.projekt.ui.ort;
 
 import org.springframework.data.annotation.Version;
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import de.hsrm.mi.web.projekt.entities.ort.Ort;
 import jakarta.validation.constraints.NotBlank;
 
 public class OrtFormular {
@@ -11,8 +10,21 @@ public class OrtFormular {
     private long version;
     @NotBlank
     String name;
-    double geobreite;
-    double geolaenge;
+    double geobreite = 0.0;
+    double geolaenge = 0.0;
+
+
+    public void toOrt(Ort o) {
+        o.setGeobreite(geobreite);
+        o.setGeolaenge(geolaenge);
+        o.setName(name);
+    }
+    
+    public void fromOrt(Ort o) {
+        this.geobreite = o.getGeobreite();
+        this.geolaenge = o.getGeolaenge();
+        this.name = o.getName();
+    }
 
     public String getName() {
         return name;
