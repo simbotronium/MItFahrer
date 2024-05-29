@@ -22,7 +22,7 @@ import java.util.Optional;
 
 @Controller
 @RequestMapping("/ort")
-@SessionAttributes(names = {})
+@SessionAttributes(names = {"ortID", "ortformular", "ort"})
 public class OrtController {
 
     private Ort ort;
