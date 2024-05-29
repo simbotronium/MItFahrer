@@ -20,7 +20,7 @@ public class Tour implements Serializable{
     @Id
     @GeneratedValue
     private long id;
-    // @Version
+    @Version
     private long version;
     private LocalDateTime abfahrDateTime;
     @Positive
