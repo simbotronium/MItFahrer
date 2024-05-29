@@ -38,7 +38,5 @@ public class Ort implements Serializable{
     }
     public void setGeolaenge(double geolaenge) {
         this.geolaenge = geolaenge;
-    }
-
-    
+    }    
 }
