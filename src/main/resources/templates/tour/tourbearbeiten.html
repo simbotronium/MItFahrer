@@ -24,8 +24,8 @@
             <div class="row mt-4">
                 <div class="col-sm-12 form-group">
                     <label th:text="#{tour.anbieter}">Anbieter</label><br>
-                    <select class="form-select" th:field="*{benutzer}">
-                        <option th:each="benutzer : ${tourformular.benutzerliste}" th:value="${benutzer.name}"
+                    <select class="form-select" th:field="*{anbieter}">
+                        <option th:each="benutzer : *{benutzerliste}" th:value="${benutzer.name}"
                             th:text="${benutzer.name}"></option>
                     </select><br>
 

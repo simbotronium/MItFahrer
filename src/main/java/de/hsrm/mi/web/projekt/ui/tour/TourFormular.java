@@ -1,6 +1,7 @@
 package de.hsrm.mi.web.projekt.ui.tour;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import org.springframework.data.annotation.Version;
 
@@ -34,6 +35,8 @@ public class TourFormular {
     private Ort zielOrt;
     @ManyToOne
     private Benutzer anbieter;
+    private List<Benutzer> benutzerliste;
+    private List<Ort> ortliste;
 
     public void toTour(Tour t) {
         t.setAbfahrDateTime(abfahrDateTime);
@@ -109,5 +112,21 @@ public class TourFormular {
 
     public void setZielOrt(Ort zielOrt) {
         this.zielOrt = zielOrt;
+    }
+
+    public List<Benutzer> getBenutzerliste() {
+        return benutzerliste;
+    }
+
+    public void setBenutzerliste(List<Benutzer> bl) {
+        this.benutzerliste = bl;
+    }
+
+    public List<Ort> getOrtliste() {
+        return ortliste;
+    }
+
+    public void setOrtliste(List<Ort> ol) {
+        this.ortliste = ol;
     }
 }

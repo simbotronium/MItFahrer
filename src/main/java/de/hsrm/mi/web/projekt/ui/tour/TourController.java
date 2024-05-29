@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import de.hsrm.mi.web.projekt.entities.tour.Tour;
+import de.hsrm.mi.web.projekt.services.benutzer.BenutzerService;
+import de.hsrm.mi.web.projekt.services.ort.OrtService;
 import de.hsrm.mi.web.projekt.services.tour.TourService;
 import jakarta.validation.Valid;
 
@@ -25,14 +27,18 @@ public class TourController {
     private Tour tour;
     private TourFormular tourFormular = new TourFormular();
     private TourService tourService;
+    private BenutzerService benutzerService;
+    private OrtService ortService; 
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    public TourController(TourService ts) {
+    public TourController(TourService ts, BenutzerService bs, OrtService os) {
         this.tourService = ts;
+        this.benutzerService = bs;
+        this.ortService = os;
     }
 
     public void initFormular(Model m) {
-        m.addAttribute("tourformula", m);
+        m.addAttribute("tourformular", m);
     }
 
     @GetMapping("/{id}")
@@ -82,6 +88,8 @@ public class TourController {
         }
 
         form.toTour(tour);
+        form.setBenutzerliste(this.benutzerService.holeAlleBenutzer());
+        form.setOrtliste(this.ortService.holeAlleOrte());
         try {
             m.addAttribute("tour", tourService.speichereTour(tour));
         } catch (Exception e) {
