@@ -17,7 +17,6 @@ import de.hsrm.mi.web.projekt.entities.ort.Ort;
 import de.hsrm.mi.web.projekt.services.ort.OrtService;
 import jakarta.validation.Valid;
 
-import java.util.List;
 import java.util.Optional;
 
 
@@ -27,7 +26,7 @@ import java.util.Optional;
 public class OrtController {
 
     private Ort ort;
-    private OrtFormular ortFormular;
+    private OrtFormular ortFormular = new OrtFormular();
     private OrtService ortService;
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
@@ -60,7 +59,7 @@ public class OrtController {
         m.addAttribute("ort", ort);
         m.addAttribute("ortformular", ortFormular);
 
-        return "ortbearbeiten";
+        return "ort/ortbearbeiten";
     }
 
     @GetMapping("/{id}/del")
@@ -74,7 +73,7 @@ public class OrtController {
     @GetMapping
     public String getMethodName(Model m) {
         m.addAttribute("ortsliste", this.ortService.holeAlleOrte());
-        return "ortliste";
+        return "ort/ortliste";
     }
     
 
@@ -82,7 +81,7 @@ public class OrtController {
     public String postMethodName(@Valid @ModelAttribute("ortformular") OrtFormular form, BindingResult result,
             Model m, @ModelAttribute("ort") Ort ort, @PathVariable("id") Long id) {
         if (result.hasErrors()) {
-            return "ortbearbeiten";
+            return "ort/ortbearbeiten";
         }
 
         form.toOrt(ort);
@@ -95,7 +94,7 @@ public class OrtController {
         if (id == 0) {
             return "redirect:/ort/" + ort.getId();
         }
-        return "ortbearbeiten";
+        return "ort/ortbearbeiten";
     }
 
 }

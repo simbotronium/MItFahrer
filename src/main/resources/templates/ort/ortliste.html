@@ -12,7 +12,7 @@
 </head>
 
 <body>
-    <header th:replace="~{fragments/kopffuss :: kopf}"></header>
+    <header th:replace="~{/../fragments/kopffuss :: kopf}"></header>
     <div class="container">
         <div class="container text-center mt-4">
             <h4 th:text="#{ortsliste.titel}">Ortliste</h4>
@@ -25,7 +25,7 @@
                 <td th:text="${ort.geolaenge}"></td>
                 <td>
                     <a th:href="|https://www.openstreetmap.org/#map=14/${ort.geobreite}/${ort.geolaenge}|"
-                        target="_blank" th:text="${ort.link.karte}">Karte</a>
+                        target="_blank" th:text="#{ort.link.karte}">Karte</a>
                 </td>
                 <td><a th:href="@{/ort/{id}(id=${ort.id})}"><button th:text="#{ortsliste.eintrag.bearbeiten}"
                             class="btn btn-danger" th:action="@{ort/ort.id}">Bearbeiten</button></a></td>
@@ -35,7 +35,7 @@
         </table>
         <a th:href="@{/ort/0}"><button th:text="#{ortsliste.neu}" class="btn btn-primary">Neuer Ort</button></a>
     </div>
-    <footer th:replace="~{fragments/kopffuss :: fuss}">
+    <footer th:replace="~{/../fragments/kopffuss :: fuss}">
     </footer>
 </body>
 
