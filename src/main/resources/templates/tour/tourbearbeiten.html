@@ -23,30 +23,56 @@
         <form th:method="POST" th:object="${tourformular}" th:action="@{#}">
             <div class="row mt-4">
                 <div class="col-sm-12 form-group">
-                    <label th:text="#{tour.anbieter}" for="anbieter">Anbieter</label><br>
-                    <select class="form-select" type="text" th:field="*{name}" th:errorclass="is-invalid">
+                    <label th:text="#{tour.anbieter}">Anbieter</label><br>
+                    <select class="form-select" th:field="*{benutzer}">
+                        <option th:each="benutzer : ${tourformular.benutzerliste}" th:value="${benutzer.name}"
+                            th:text="${benutzer.name}"></option>
+                    </select><br>
+
+                    <label th:text="#{tour.abfahrdatetime}">Abfahrtszeitpunkt</label><br>
+                    <input type="date" class="form-control" th:field="*{abfahrDateTime}" th:errorclass="is-invalid">
+                    <div class="text-danger" th:if="${#fields.hasErrors('abfahrDateTime')}"
+                        th:errors="*{abfahrDateTime}"></div>
+
+                    <label th:text="#{tour.preis}">Preis</label><br>
+                    <input type="text" class="form-control" th:field="*{preis}" th:errorclass="is-invalid">
+                    <div class="text-danger" th:if="${#fields.hasErrors('preis')}" th:errors="*{preis}"></div> <br>
+
+                    <label th:text="#{tour.plaetze}">Plätze</label><br>
+                    <input type="text" class="form-control" th:field="*{plaetze}" th:errorclass="is-invalid">
+                    <div class="text-danger" th:if="${#fields.hasErrors('plaetze')}" th:errors="*{plaetze}"></div> <br>
+
+                    <label th:text="#{tour.startort}">Startort</label>
+                    <select class="form-select" th:field="*{startOrt}">
+                        <option th:each="ort : ${tourformular.ortliste}" th:value="${ort.name}" th:text="${ort.name}">
+                        </option>
+                        </option>
+                    </select>
+
+                    <label th:text="#{tour.anbieter}">Zielort</label>
+                    <select class="form-select" th:field="*{zielOrt}">
+                        <option th:each="ort : ${tourformular.ortliste}" th:value="${ort.name}" th:text="${ort.name}">
+                        </option>
+                    </select><br>
+
+                    <label th:text="#{tour.fahrgastinfos}">Fahrgastinformationen</label><br>
+                    <textarea class="form-control" type="text" th:field="*{info}" rows="4"
+                        th:errorclass="is-invalid"></textarea>
+                    <div class="text-danger" th:if="${#fields.hasErrors('info')}" th:errors="*{info}">
                     </div>
                     <br>
-
-                    <label th:text="#{ort.geobreite}">Breite</label><br>
-                    <input type="text" class="form-control" th:field="*{geobreite}" th:errorclass="is-invalid">
-                    <div class="text-danger" th:if="${#fields.hasErrors('geobreite')}" th:errors="*{geobreite}">
-                    </div>
-
-                    <label th:text="#{ort.geolaenge}">Geolänge</label><br>
-                    <input type="text" class="form-control" th:field="*{geolaenge}" th:errorclass="is-invalid">
-                    <div class="text-danger" th:if="${#fields.hasErrors('geolaenge')}" th:errors="*{geolaenge}">
-                    </div> <br>
                 </div>
-            </div>
-            <div class="col-sm-12">
-                <div class="d-grid mt-4">
+
+                <div class="col-sm-12">
+                    <div class="d-grid mt-4">
                         <input type="submit" class="btn btn-primary btn-block" value="ok">
+                    </div>
                 </div>
-        </div>
-    </div>
-    </form>
-    <footer th:replace="~{/../fragments/kopffuss :: fuss}">
-    </footer>
+
+            </div>
+        </form>
+        <footer th:replace="~{/../fragments/kopffuss :: fuss}">
+        </footer>
 </body>
+
 </html>
