@@ -63,7 +63,7 @@ public class BenutzerController {
         m.addAttribute("benutzer", benutzer);
         m.addAttribute("formular", benutzerFormular);
 
-        return "benutzerbearbeiten";
+        return "benutzer/benutzerbearbeiten";
     }
 
     @GetMapping("/{id}/del")
@@ -77,7 +77,7 @@ public class BenutzerController {
     @GetMapping
     public String getMethodName(Model m) {
         m.addAttribute("benutzerliste", this.benutzerService.holeAlleBenutzer());
-        return "benutzerliste";
+        return "benutzer/benutzerliste";
     }
     
 
@@ -92,7 +92,7 @@ public class BenutzerController {
             result.rejectValue("password", "benutzer.passwort.ungesetzt", "Passwort wurde noch nicht gesetzt");
         }
         if (result.hasErrors()) {
-            return "benutzerbearbeiten";
+            return "benutzer/benutzerbearbeiten";
         }
 
         form.toBenutzer(benutzer);
@@ -105,7 +105,7 @@ public class BenutzerController {
         if (id == 0) {
             return "redirect:/benutzer/" + benutzer.getId();
         }
-        return "benutzerbearbeiten";
+        return "benutzer/benutzerbearbeiten";
     }
 
 }
