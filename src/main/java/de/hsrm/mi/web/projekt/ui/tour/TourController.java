@@ -21,7 +21,7 @@ import de.hsrm.mi.web.projekt.services.tour.TourService;
 import jakarta.validation.Valid;
 
 @Controller
-@RequestMapping("tour")
+@RequestMapping("/tour")
 @SessionAttributes(names={"tourID", "tourformular", "tour"})
 public class TourController {
     private Tour tour;
@@ -51,6 +51,7 @@ public class TourController {
         if (id == 0 || optTour.isEmpty()) {
             logger.info("Neue Tour");
             tourFormular = new TourFormular();
+            this.setLists(tourFormular);
             tour = new Tour();
             if (optTour.isEmpty() && id > 0) {
                 logger.info("Id nicht gefunden");
@@ -58,6 +59,7 @@ public class TourController {
         } else {
             tour = optTour.get();
             tourFormular.fromTour(tour);
+            this.setLists(tourFormular);
         }
         m.addAttribute("tour", tour);
         m.addAttribute("tourformular", tourFormular);
@@ -100,6 +102,11 @@ public class TourController {
             return "redirect:/tour/" + tour.getId();
         }
         return "tour/tourbearbeiten";
+    }
+
+    private void setLists(TourFormular tf) {
+        tf.setOrtliste(this.ortService.holeAlleOrte());
+        tf.setBenutzerliste(this.benutzerService.holeAlleBenutzer());
     }
 
 }

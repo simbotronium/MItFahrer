@@ -1,6 +1,7 @@
 package de.hsrm.mi.web.projekt.ui.tour;
 
 import java.time.LocalDateTime;
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.data.annotation.Version;
@@ -129,4 +130,5 @@ public class TourFormular {
     public void setOrtliste(List<Ort> ol) {
         this.ortliste = ol;
     }
+
 }
