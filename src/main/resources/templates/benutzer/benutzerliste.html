@@ -12,7 +12,7 @@
 </head>
 
 <body>
-    <header th:replace="~{fragments/kopffuss :: kopf}"></header>
+    <header th:replace="~{/../fragments/kopffuss :: kopf}"></header>
     <div class="container">
         <div class="container text-center mt-4">
             <h4 th:text="#{benutzerliste.titel}">Benutzerliste</h4>
@@ -33,7 +33,7 @@
         <a th:href="@{/benutzer/0}"><button th:text="#{benutzerliste.neu}" class="btn btn-primary">Neuer
                 Benutzer</button></a>
     </div>
-    <footer th:replace="~{fragments/kopffuss :: fuss}">
+    <footer th:replace="~{/../fragments/kopffuss :: fuss}">
     </footer>
 </body>
 

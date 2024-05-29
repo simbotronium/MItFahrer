@@ -13,7 +13,7 @@
 </head>
 
 <body>
-        <header th:replace="~{fragments/kopffuss :: kopf}">
+        <header th:replace="~{/../fragments/kopffuss :: kopf}">
         </header>
         <div class="container text-center mt-4">
                 <h4 th:text="#{benutzerprofil.titel.neu}" th:if="${benutzerID} == 0">Neuer Benutzer</h4>
@@ -86,7 +86,7 @@
                         </div>
         </div>
         </form>
-        <footer th:replace="~{fragments/kopffuss :: fuss}">
+        <footer th:replace="~{/../fragments/kopffuss :: fuss}">
         </footer>
 </body>
 
