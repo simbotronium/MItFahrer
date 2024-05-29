@@ -79,4 +79,7 @@ public class Tour implements Serializable{
     public void setZielOrt(Ort zielOrt) {
         this.zielOrt = zielOrt;
     }
+    public long getId() {
+        return id;
+    }
 }

@@ -20,12 +20,12 @@
         <table class="table">
             <th>
                 <td>ID</td>
-                <td th:text="tour.abfahrdatetime"></td>
-                <td th:text="tour.preis"></td>
-                <td th:text="tour.plaetze"></td>
-                <td th:text="tour.startort"></td>
-                <td th:text="tour.zielort"></td>
-                <td th:text="tour.anbieter"></td>
+                <td th:text="#{tour.abfahrdatetime}"></td>
+                <td th:text="#{tour.preis}"></td>
+                <td th:text="#{tour.plaetze}"></td>
+                <td th:text="#{tour.startort}"></td>
+                <td th:text="#{tour.zielort}"></td>
+                <td th:text="#{tour.anbieter}"></td>
             </th>
             <tr th:each="tour : ${tourliste}">
                 <td th:text="${tour.id}"></td>

@@ -6,6 +6,7 @@ import org.springframework.data.annotation.Version;
 
 import de.hsrm.mi.web.projekt.entities.benutzer.Benutzer;
 import de.hsrm.mi.web.projekt.entities.ort.Ort;
+import de.hsrm.mi.web.projekt.entities.tour.Tour;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
@@ -33,6 +34,26 @@ public class TourFormular {
     private Ort zielOrt;
     @ManyToOne
     private Benutzer anbieter;
+
+    public void toTour(Tour t) {
+        t.setAbfahrDateTime(abfahrDateTime);
+        t.setAnbieter(anbieter);
+        t.setInfo(info);
+        t.setPreis(preis);
+        t.setPlaetze(plaetze);
+        t.setStartOrt(startOrt);
+        t.setZielOrt(zielOrt);
+    }
+
+    public void fromTour(Tour t) {
+        this.abfahrDateTime = t.getAbfahrDateTime();
+        this.anbieter = t.getAnbieter();
+        this.info = t.getInfo();
+        this.plaetze = t.getPlaetze();
+        this.preis = t.getPreis();
+        this.startOrt = t.getStartOrt();
+        this.zielOrt = t.getZielOrt();
+    }
 
     public Benutzer getAnbieter() {
         return anbieter;
