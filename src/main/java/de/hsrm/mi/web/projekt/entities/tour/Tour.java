@@ -3,13 +3,14 @@ package de.hsrm.mi.web.projekt.entities.tour;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
-import org.springframework.data.annotation.Id;
+
 import org.springframework.data.annotation.Version;
 
 import de.hsrm.mi.web.projekt.entities.benutzer.Benutzer;
 import de.hsrm.mi.web.projekt.entities.ort.Ort;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.validation.constraints.Min;
@@ -19,7 +20,7 @@ public class Tour implements Serializable{
     @Id
     @GeneratedValue
     private long id;
-    @Version
+    // @Version
     private long version;
     private LocalDateTime abfahrDateTime;
     @Positive
