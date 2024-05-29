@@ -23,12 +23,14 @@
                 <td th:text="${ort.name}"></td>
                 <td th:text="${ort.geobreite}"></td>
                 <td th:text="${ort.geolaenge}"></td>
-                <td><a th:href="@{/ort/{id}(id=${ort.id})}"><button
-                            th:text="#{ortsliste.eintrag.bearbeiten}" class="btn btn-danger"
-                            th:action="@{ort/ort.id}">Bearbeiten</button></a></td>
-                <td><a th:href="@{/ort/{id}/del(id=${ort.id})}"><button
-                            th:text="#{ortsliste.eintrag.loeschen}" class="btn btn-secondary"
-                            type="button">Löschen</button></a></td>
+                <td>
+                    <a th:href="|https://www.openstreetmap.org/#map=14/${ort.geobreite}/${ort.geolaenge}|"
+                        target="_blank" th:text="${ort.link.karte}">Karte</a>
+                </td>
+                <td><a th:href="@{/ort/{id}(id=${ort.id})}"><button th:text="#{ortsliste.eintrag.bearbeiten}"
+                            class="btn btn-danger" th:action="@{ort/ort.id}">Bearbeiten</button></a></td>
+                <td><a th:href="@{/ort/{id}/del(id=${ort.id})}"><button th:text="#{ortsliste.eintrag.loeschen}"
+                            class="btn btn-secondary" type="button">Löschen</button></a></td>
             </tr>
         </table>
         <a th:href="@{/ort/0}"><button th:text="#{ortsliste.neu}" class="btn btn-primary">Neuer Ort</button></a>
