@@ -13,7 +13,7 @@
 </head>
 
 <body>
-    <header th:replace="~{fragments/kopffuss :: kopf}">
+    <header th:replace="~{/../fragments/kopffuss :: kopf}">
     </header>
     <div class="container text-center mt-4">
         <h4 th:text="#{ortformular.titel.neu}" th:if="${ortID} == 0">Neuer Ort</h4>
@@ -47,7 +47,7 @@
         </div>
     </div>
     </form>
-    <footer th:replace="~{fragments/kopffuss :: fuss}">
+    <footer th:replace="~{/../fragments/kopffuss :: fuss}">
     </footer>
 </body>
 </html>
