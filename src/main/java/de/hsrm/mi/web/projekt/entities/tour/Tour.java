@@ -15,6 +15,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.Size;
 @Entity
 public class Tour implements Serializable{
     @Id
@@ -23,10 +24,11 @@ public class Tour implements Serializable{
     @Version
     private long version;
     private LocalDateTime abfahrDateTime;
-    @Positive
+    @Min(value=0)
     private int preis;
-    @Min(value=1)
+    @Positive
     private int plaetze;
+    @Size(min=0, max=400)
     private String info;
     @OneToOne
     private Ort startOrt;
