@@ -34,19 +34,24 @@
                     <input type="text" class="form-control" th:field="*{plaetze}" th:errorclass="is-invalid">
                     <div class="text-danger" th:if="${#fields.hasErrors('plaetze')}" th:errors="*{plaetze}"></div> <br>
 
-                    <label th:text="#{tour.startort}">Startort</label>
-                    <select class="form-select" th:field="*{startOrt}">
-                        <option th:each="ort : ${tourformular.ortliste}" th:value="${ort.name}" th:text="${ort.name}">
-                        </option>
-                        </option>
-                    </select>
-
-                    <label th:text="#{tour.anbieter}">Zielort</label>
-                    <select class="form-select" th:field="*{zielOrt}">
-                        <option th:each="ort : ${tourformular.ortliste}" th:value="${ort.name}" th:text="${ort.name}">
-                        </option>
-                    </select><br>
-
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <label th:text="#{tour.startort}">Startort</label>
+                            <select class="form-select" th:field="*{startOrt}">
+                                <option th:each="ort : ${tourformular.ortliste}" th:value="${ort.name}"
+                                    th:text="${ort.name}">
+                                </option>
+                            </select>
+                        </div>
+                        <div class="col-sm-6">
+                            <label th:text="#{tour.zielort}">Zielort</label>
+                            <select class="form-select" th:field="*{zielOrt}">
+                                <option th:each="ort : ${tourformular.ortliste}" th:value="${ort.name}"
+                                    th:text="${ort.name}">
+                                </option>
+                            </select>
+                        </div>
+                    </div>
                     <label th:text="#{tour.fahrgastinfos}">Fahrgastinformationen</label><br>
                     <textarea class="form-control" type="text" th:field="*{info}" rows="4"
                         th:errorclass="is-invalid"></textarea>
