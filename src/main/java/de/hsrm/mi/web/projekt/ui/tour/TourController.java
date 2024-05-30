@@ -25,7 +25,7 @@ import jakarta.validation.Valid;
 @SessionAttributes(names={"tourID", "tourformular", "tour"})
 public class TourController {
     private Tour tour;
-    private TourFormular tourFormular = new TourFormular();
+    private TourFormular tourformular = new TourFormular();
     private TourService tourService;
     private BenutzerService benutzerService;
     private OrtService ortService; 
@@ -50,19 +50,19 @@ public class TourController {
 
         if (id == 0 || optTour.isEmpty()) {
             logger.info("Neue Tour");
-            tourFormular = new TourFormular();
-            this.setLists(tourFormular);
+            tourformular = new TourFormular();
+            this.setLists(tourformular);
             tour = new Tour();
             if (optTour.isEmpty() && id > 0) {
                 logger.info("Id nicht gefunden");
             }
         } else {
             tour = optTour.get();
-            tourFormular.fromTour(tour);
-            this.setLists(tourFormular);
+            tourformular.fromTour(tour);
+            this.setLists(tourformular);
         }
         m.addAttribute("tour", tour);
-        m.addAttribute("tourformular", tourFormular);
+        m.addAttribute("tourformular", tourformular);
 
         return "tour/tourbearbeiten";
     }

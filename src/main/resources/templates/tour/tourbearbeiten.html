@@ -17,12 +17,12 @@
                 <div class="col-sm-12 form-group">
                     <label th:text="#{tour.anbieter}">Anbieter</label><br>
                     <select class="form-select" th:field="*{anbieter}">
-                        <option th:each="benutzer : *{benutzerliste}" th:value="${benutzer.name}"
+                        <option th:each="benutzer : *{benutzerliste}" th:value="${benutzer}"
                             th:text="${benutzer.name}"></option>
                     </select><br>
 
                     <label th:text="#{tour.abfahrdatetime}">Abfahrtszeitpunkt</label><br>
-                    <input type="date" class="form-control" th:field="*{abfahrDateTime}" th:errorclass="is-invalid">
+                    <input type="datetime-local" class="form-control" th:field="*{abfahrDateTime}" th:errorclass="is-invalid">
                     <div class="text-danger" th:if="${#fields.hasErrors('abfahrDateTime')}"
                         th:errors="*{abfahrDateTime}"></div>
 
@@ -38,7 +38,7 @@
                         <div class="col-sm-6">
                             <label th:text="#{tour.startort}">Startort</label>
                             <select class="form-select" th:field="*{startOrt}">
-                                <option th:each="ort : ${tourformular.ortliste}" th:value="${ort.name}"
+                                <option th:each="ort : ${tourformular.ortliste}" th:value="${ort}"
                                     th:text="${ort.name}">
                                 </option>
                             </select>
@@ -46,7 +46,7 @@
                         <div class="col-sm-6">
                             <label th:text="#{tour.zielort}">Zielort</label>
                             <select class="form-select" th:field="*{zielOrt}">
-                                <option th:each="ort : ${tourformular.ortliste}" th:value="${ort.name}"
+                                <option th:each="ort : ${tourformular.ortliste}" th:value="${ort}"
                                     th:text="${ort.name}">
                                 </option>
                             </select>
