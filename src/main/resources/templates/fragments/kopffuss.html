@@ -1,6 +1,7 @@
-<header th:fragment="kopf">
+<header th:fragment="kopf(ueberschrift)">
     <div class="p-5 jumbotron bg-primary text-center text-white rounded">
         <h1>Die MI fahrzentrale</h1>
+        <h4 th:text="${ueberschrift}"></h4>
     </div>
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
