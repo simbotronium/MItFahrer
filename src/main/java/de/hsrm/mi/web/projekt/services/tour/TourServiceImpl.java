@@ -26,6 +26,12 @@ public class TourServiceImpl implements TourService {
         this.tourRepository = tr;
     }
 
+    @Transactional
+    Tour speichereTourAngebot(long anbieterid, Tour tour, long startortid, long zielortid) {
+        tour.setStartOrt(startortid);
+        return this.tourRepository.save();
+    }
+
     @Override
     public List<Tour> holeAlleTouren() {
         return this.tourRepository.findAll(Sort.by(Sort.Direction.ASC, "abfahrDateTime"));

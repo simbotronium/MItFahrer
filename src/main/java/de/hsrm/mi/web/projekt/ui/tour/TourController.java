@@ -38,7 +38,7 @@ public class TourController {
     }
 
     public void initFormular(Model m) {
-        m.addAttribute("tourformular", m);
+        m.addAttribute("tourformular", new TourFormular());
     }
 
     @GetMapping("/{id}")

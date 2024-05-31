@@ -17,7 +17,7 @@
                 <div class="col-sm-12 form-group">
                     <label th:text="#{tour.anbieter}">Anbieter</label><br>
                     <select class="form-select" th:field="*{anbieter}">
-                        <option th:each="benutzer : *{benutzerliste}" th:value="${benutzer}"
+                        <option th:each="benutzer : *{benutzerliste}" th:value="${benutzer.id}"
                             th:text="${benutzer.name}"></option>
                     </select><br>
 
@@ -38,7 +38,7 @@
                         <div class="col-sm-6">
                             <label th:text="#{tour.startort}">Startort</label>
                             <select class="form-select" th:field="*{startOrt}">
-                                <option th:each="ort : ${tourformular.ortliste}" th:value="${ort}"
+                                <option th:each="ort : ${tourformular.ortliste}" th:value="${ort.id}"
                                     th:text="${ort.name}">
                                 </option>
                             </select>
@@ -46,7 +46,7 @@
                         <div class="col-sm-6">
                             <label th:text="#{tour.zielort}">Zielort</label>
                             <select class="form-select" th:field="*{zielOrt}">
-                                <option th:each="ort : ${tourformular.ortliste}" th:value="${ort}"
+                                <option th:each="ort : ${tourformular.ortliste}" th:value="${ort.id}"
                                     th:text="${ort.name}">
                                 </option>
                             </select>
