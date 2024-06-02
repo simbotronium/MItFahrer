@@ -79,9 +79,6 @@ public class TourController {
     @GetMapping
     public String getMethodName(Model m) {
         List<Tour> tl = tourService.holeAlleTouren();
-        System.out.println("hier hier hier hier hier hier");
-        System.out.println(tl);
-        System.out.println("hier hier hier hier hier hier");
         m.addAttribute("tourliste", tl);
         return "tour/tourliste";
     }
