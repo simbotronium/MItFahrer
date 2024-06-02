@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import de.hsrm.mi.web.projekt.entities.benutzer.Benutzer;
 import de.hsrm.mi.web.projekt.services.benutzer.BenutzerService;
+import de.hsrm.mi.web.projekt.services.geo.GeoService;
+import de.hsrm.mi.web.projekt.services.geo.GeoServiceImpl;
 import jakarta.validation.Valid;
 
 import org.springframework.web.bind.annotation.GetMapping;
@@ -76,6 +78,8 @@ public class BenutzerController {
 
     @GetMapping
     public String getMethodName(Model m) {
+        GeoService geoService = new GeoServiceImpl();
+        geoService.findeAdressen("karlsruhe");
         m.addAttribute("benutzerliste", this.benutzerService.holeAlleBenutzer());
         return "benutzer/benutzerliste";
     }

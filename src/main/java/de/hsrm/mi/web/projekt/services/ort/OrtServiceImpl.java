@@ -1,6 +1,6 @@
 package de.hsrm.mi.web.projekt.services.ort;
 
-import java.util.List;
+import java.util.*;
 import java.util.Optional;
 
 import org.slf4j.Logger;
@@ -13,6 +13,9 @@ import org.springframework.transaction.annotation.Transactional;
 import de.hsrm.mi.web.projekt.entities.ort.Ort;
 import de.hsrm.mi.web.projekt.entities.ort.OrtRepository;
 import de.hsrm.mi.web.projekt.services.benutzer.BenutzerServiceImpl;
+import de.hsrm.mi.web.projekt.services.geo.GeoAdresse;
+import de.hsrm.mi.web.projekt.services.geo.GeoService;
+import de.hsrm.mi.web.projekt.services.geo.GeoServiceImpl;
 
 @Service
 public class OrtServiceImpl implements OrtService {
@@ -21,6 +24,7 @@ public class OrtServiceImpl implements OrtService {
     
     @Autowired
     private final OrtRepository ortRepository;
+    private final GeoService geoService = new GeoServiceImpl();
 
     public OrtServiceImpl(OrtRepository or) {
         this.ortRepository = or;
@@ -52,7 +56,14 @@ public class OrtServiceImpl implements OrtService {
         this.ortRepository.deleteById(id);
     }
 
+    public List<Ort> findeOrtsvorschlaegeFuerAdresse(String ort) {
+        List<Ort> res = new ArrayList<Ort>();
+        for (GeoAdresse geoAdresse: geoService.findeAdressen(ort)) {
+            res.add(new Ort().fromGeoAdresse(geoAdresse));
+        }
 
+        return res;
+    }
     
     
 }

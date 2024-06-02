@@ -17,7 +17,7 @@ import de.hsrm.mi.web.projekt.entities.ort.Ort;
 import de.hsrm.mi.web.projekt.services.ort.OrtService;
 import jakarta.validation.Valid;
 
-import java.util.Optional;
+import java.util.*;
 
 
 @Controller
@@ -81,6 +81,18 @@ public class OrtController {
     public String postMethodName(@Valid @ModelAttribute("ortformular") OrtFormular form, BindingResult result,
             Model m, @ModelAttribute("ort") Ort ort, @PathVariable("id") Long id) {
         if (result.hasErrors()) {
+            return "ort/ortbearbeiten";
+        }
+
+        if (id == 0 && form.geobreite == 0.0 && form.geolaenge == 0.0) {
+            List<Ort> l = this.ortService.findeOrtsvorschlaegeFuerAdresse(form.getName().toLowerCase());
+            if (l.size() == 0) {
+                m.addAttribute("info", "keinen Vorschlag gefunden");
+                return "ort/ortbearbeiten";
+            }
+            m.addAttribute("info", "Vorschlag bitte bestätigen oder ändern");
+            form.setGeobreite(l.get(0).getGeobreite());
+            form.setGeolaenge(l.get(0).getGeolaenge());
             return "ort/ortbearbeiten";
         }
 

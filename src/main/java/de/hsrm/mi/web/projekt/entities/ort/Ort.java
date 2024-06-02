@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import org.springframework.data.annotation.Version;
 
+import de.hsrm.mi.web.projekt.services.geo.GeoAdresse;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -41,5 +42,11 @@ public class Ort implements Serializable{
     }
     public long getId() {
         return this.id;
+    }
+    public Ort fromGeoAdresse(GeoAdresse geoAdresse) {
+        this.geobreite = geoAdresse.lat();
+        this.geolaenge = geoAdresse.lon();
+        this.name = geoAdresse.name();
+        return this;
     }
 }
