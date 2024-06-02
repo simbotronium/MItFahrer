@@ -30,39 +30,33 @@ public class TourFormular {
     @Size(min = 0, max = 400)
     private String info;
     @OneToOne
-    private Ort startOrt;
+    private long startOrt;
     @OneToOne
-    private Ort zielOrt;
+    private long zielOrt;
     @ManyToOne
-    private Benutzer anbieter;
+    private long anbieter;
     private List<Benutzer> benutzerliste;
     private List<Ort> ortliste;
 
     public void toTour(Tour t) {
         t.setAbfahrDateTime(abfahrDateTime);
-        t.setAnbieter(anbieter);
         t.setInfo(info);
         t.setPreis(preis);
         t.setPlaetze(plaetze);
-        t.setStartOrt(startOrt);
-        t.setZielOrt(zielOrt);
     }
 
     public void fromTour(Tour t) {
         this.abfahrDateTime = t.getAbfahrDateTime();
-        this.anbieter = t.getAnbieter();
         this.info = t.getInfo();
         this.plaetze = t.getPlaetze();
         this.preis = t.getPreis();
-        this.startOrt = t.getStartOrt();
-        this.zielOrt = t.getZielOrt();
     }
 
-    public Benutzer getAnbieter() {
+    public long getAnbieter() {
         return anbieter;
     }
 
-    public void setAnbieter(Benutzer anbieter) {
+    public void setAnbieter(long anbieter) {
         this.anbieter = anbieter;
     }
 
@@ -98,19 +92,19 @@ public class TourFormular {
         this.info = info;
     }
 
-    public Ort getStartOrt() {
+    public long getStartOrt() {
         return startOrt;
     }
 
-    public void setStartOrt(Ort startOrt) {
+    public void setStartOrt(long startOrt) {
         this.startOrt = startOrt;
     }
 
-    public Ort getZielOrt() {
+    public long getZielOrt() {
         return zielOrt;
     }
 
-    public void setZielOrt(Ort zielOrt) {
+    public void setZielOrt(long zielOrt) {
         this.zielOrt = zielOrt;
     }
 

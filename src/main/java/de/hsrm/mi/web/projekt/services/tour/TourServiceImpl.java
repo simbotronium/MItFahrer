@@ -10,6 +10,8 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import de.hsrm.mi.web.projekt.entities.benutzer.BenutzerRepository;
+import de.hsrm.mi.web.projekt.entities.ort.OrtRepository;
 import de.hsrm.mi.web.projekt.entities.tour.Tour;
 import de.hsrm.mi.web.projekt.entities.tour.TourRepository;
 import de.hsrm.mi.web.projekt.services.benutzer.BenutzerServiceImpl;
@@ -21,16 +23,27 @@ public class TourServiceImpl implements TourService {
     
     @Autowired
     private final TourRepository tourRepository;
+    @Autowired
+    private final BenutzerRepository benutzerRepository;
+    @Autowired 
+    private final OrtRepository ortRepository;
 
-    public TourServiceImpl(TourRepository tr) {
+
+    public TourServiceImpl(TourRepository tr, BenutzerRepository br, OrtRepository or) {
         this.tourRepository = tr;
+        this.benutzerRepository = br;
+        this.ortRepository = or;
     }
 
+    
     @Transactional
-    Tour speichereTourAngebot(long anbieterid, Tour tour, long startortid, long zielortid) {
-        tour.setStartOrt(startortid);
-        return this.tourRepository.save();
+    public Tour speichereTourAngebot(long anbieterid, Tour tour, long startortid, long zielortid) {
+        tour.setAnbieter(benutzerRepository.findById(anbieterid).get());
+        tour.setStartort(ortRepository.findById(startortid).get());
+        tour.setZielort(ortRepository.findById(zielortid).get());
+        return tour;
     }
+    
 
     @Override
     public List<Tour> holeAlleTouren() {

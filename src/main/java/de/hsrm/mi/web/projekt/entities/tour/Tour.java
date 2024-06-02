@@ -12,7 +12,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToOne;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
@@ -30,10 +29,10 @@ public class Tour implements Serializable{
     private int plaetze;
     @Size(min=0, max=400)
     private String info;
-    @OneToOne
-    private Ort startOrt;
-    @OneToOne
-    private Ort zielOrt;
+    @ManyToOne
+    private Ort startort;
+    @ManyToOne
+    private Ort zielort;
     @ManyToOne
     private Benutzer anbieter;
 
@@ -67,19 +66,24 @@ public class Tour implements Serializable{
     public void setInfo(String info) {
         this.info = info;
     }
-    public Ort getStartOrt() {
-        return startOrt;
+    public Ort getStartort() {
+        return startort;
     }
-    public void setStartOrt(Ort startOrt) {
-        this.startOrt = startOrt;
+    public void setStartort(Ort startOrt) {
+        this.startort = startOrt;
     }
-    public Ort getZielOrt() {
-        return zielOrt;
+    public Ort getZielort() {
+        return zielort;
     }
-    public void setZielOrt(Ort zielOrt) {
-        this.zielOrt = zielOrt;
+    public void setZielort(Ort zielOrt) {
+        this.zielort = zielOrt;
     }
     public long getId() {
         return id;
+    }
+
+    @Override
+    public String toString() {
+        return "Tour von " + anbieter.getName();
     }
 }

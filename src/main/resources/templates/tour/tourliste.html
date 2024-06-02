@@ -11,22 +11,24 @@
     <div class="container">
         <table class="table">
             <th>
+                <tr>
                 <td>ID</td>
-                <td th:text="#{tour.abfahrdatetime}"></td>
-                <td th:text="#{tour.preis}"></td>
-                <td th:text="#{tour.plaetze}"></td>
-                <td th:text="#{tour.startort}"></td>
-                <td th:text="#{tour.zielort}"></td>
-                <td th:text="#{tour.anbieter}"></td>
+                    <td th:text="#{tour.abfahrdatetime}"></td>
+                    <td th:text="#{tour.preis}"></td>
+                    <td th:text="#{tour.plaetze}"></td>
+                    <td th:text="#{tour.startort}"></td>
+                    <td th:text="#{tour.zielort}"></td>
+                    <td th:text="#{tour.anbieter}"></td>
+                </tr>
             </th>
             <tr th:each="tour : ${tourliste}">
                 <td th:text="${tour.id}"></td>
                 <td th:text="${tour.abfahrDateTime}"></td>
                 <td th:text="${tour.preis}"></td>
                 <td th:text="${tour.plaetze}"></td>
-                <td th:text="${tour.startort}"></td>
-                <td th:text="${tour.zielort}"></td>
-                <td th:text="${tour.anbieter}"></td>
+                <td th:text="${tour.startort.name}"></td>
+                <td th:text="${tour.zielort.name}"></td>
+                <td th:text="${tour.anbieter.name}"></td>
                 <td><a th:href="@{/tour/{id}(id=${tour.id})}"><button th:text="#{tourliste.eintrag.bearbeiten}"
                             class="btn btn-danger" th:action="@{tour/tour.id}">Bearbeiten</button></a></td>
                 <td><a th:href="@{/tour/{id}/del(id=${tour.id})}"><button th:text="#{tourliste.eintrag.loeschen}"

@@ -1,5 +1,6 @@
 package de.hsrm.mi.web.projekt.ui.tour;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.slf4j.Logger;
@@ -77,7 +78,11 @@ public class TourController {
 
     @GetMapping
     public String getMethodName(Model m) {
-        m.addAttribute("tourliste", this.tourService.holeAlleTouren());
+        List<Tour> tl = tourService.holeAlleTouren();
+        System.out.println("hier hier hier hier hier hier");
+        System.out.println(tl);
+        System.out.println("hier hier hier hier hier hier");
+        m.addAttribute("tourliste", tl);
         return "tour/tourliste";
     }
     
@@ -90,8 +95,7 @@ public class TourController {
         }
 
         form.toTour(tour);
-        form.setBenutzerliste(this.benutzerService.holeAlleBenutzer());
-        form.setOrtliste(this.ortService.holeAlleOrte());
+        tour = tourService.speichereTourAngebot(form.getAnbieter(), tour, form.getStartOrt(), form.getZielOrt());
         try {
             m.addAttribute("tour", tourService.speichereTour(tour));
         } catch (Exception e) {
