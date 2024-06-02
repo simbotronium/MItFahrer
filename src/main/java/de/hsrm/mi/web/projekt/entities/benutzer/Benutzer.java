@@ -9,6 +9,7 @@ import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 import de.hsrm.mi.web.projekt.entities.tour.Tour;
 import de.hsrm.mi.web.projekt.validators.GutesPasswort;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -49,7 +50,7 @@ public class Benutzer implements Serializable {
     private Set<String> magNichtList = new HashSet<>();
     private String mag;
     private String magNicht;
-    @OneToMany(mappedBy = "anbieter")
+    @OneToMany(mappedBy = "anbieter", cascade = CascadeType.REMOVE)
     private Set<Tour> angeboteneTouren = new HashSet<>();
 
     public void add(Tour neueTour) {
