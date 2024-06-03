@@ -1,5 +1,12 @@
+
+<script src="https://unpkg.com/htmx.org@1.5.0"></script>
+
+
 <td th:fragment="feldausgeben(benutzerid, feldname, wert)">
-    <span th:text="${wert}"></span>
+    <span   th:text="${wert}"
+            th:hx-get="@{/benutzer/{id}/hx/feld/{feldname}(id=${benutzerid},feldname=${feldname})}" 
+            th:hx-trigger="click">
+    </span>
 </td>
 
 <td th:fragment="feldbearbeiten(benutzerid, feldname, wert)">
@@ -8,7 +15,7 @@
             <input type="text" class="form-control" name="wert" th:value="${wert}">
         </div>
         <div class="col-auto">
-            <button type="submit" class="btn btn-light">ok</button>
+            <button type="submit" class="btn btn-light" th:hx-put="@{/benutzer/{id}/hx/feld/{feldname}(id=${benutzerid},feldname=${feldname})}">ok</button>
         </div>
     </form>
 </td>

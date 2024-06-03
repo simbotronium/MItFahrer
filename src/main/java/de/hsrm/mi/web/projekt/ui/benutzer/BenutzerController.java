@@ -20,6 +20,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.Optional;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
+
 
 
 @Controller
@@ -75,6 +80,20 @@ public class BenutzerController {
         return "redirect:/benutzer";
     }
     
+    @GetMapping("/{id}/hx/feld/{feldname}")
+    public String feldausgebenHX(@RequestParam String param) {
+        //TODO: process GET request
+        System.out.println("GET GET GET GET GET GET GET GET");
+        return "benutzer/benutzerliste";
+    }
+    
+    @PutMapping("/{id}/hx/feld/{feldname}")
+    public String putMethodName(@PathVariable String id, @RequestBody String entity) {
+        //TODO: process PUT request
+        System.out.println("PUT PUT PUT PUT PUT PUT PUT PUT");
+        return entity;
+    }
+
 
     @GetMapping
     public String getMethodName(Model m) {
