@@ -81,17 +81,23 @@ public class BenutzerController {
     }
     
     @GetMapping("/{id}/hx/feld/{feldname}")
-    public String feldausgebenHX(@RequestParam String param) {
+    public String feldausgebenHX(@PathVariable("id") Long id, @PathVariable("feldname") String feldname, Model m) {
         //TODO: process GET request
         System.out.println("GET GET GET GET GET GET GET GET");
-        return "benutzer/benutzerliste";
+        m.addAttribute("benutzerid", id);
+        m.addAttribute("feldname", feldname);
+        String wert = (feldname.equals("name")) ? this.benutzerService.holeBenutzerMitId(id).get().getName() : this.benutzerService.holeBenutzerMitId(id).get().getMail();
+        m.addAttribute("wert", wert);
+        return "benutzer/benutzerliste-zeile :: feldbearbeiten";
     }
     
     @PutMapping("/{id}/hx/feld/{feldname}")
-    public String putMethodName(@PathVariable String id, @RequestBody String entity) {
-        //TODO: process PUT request
-        System.out.println("PUT PUT PUT PUT PUT PUT PUT PUT");
-        return entity;
+    public String putMethodName(@PathVariable("id") Long id, @PathVariable("feldname") String feldname, @RequestParam("wert") String wert, Model m) {
+        this.benutzerService.aktualisiereBenutzerAttribut(id, feldname, wert);
+        m.addAttribute("benutzerid", id);
+        m.addAttribute("feldname", feldname);
+        m.addAttribute("wert", wert);
+        return "benutzer/benutzerliste-zeile :: feldausgeben";
     }
 
 

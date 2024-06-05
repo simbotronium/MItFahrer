@@ -57,4 +57,15 @@ public class BenutzerServiceImpl implements BenutzerService{
         this.benutzerRepository.deleteById(id);
     }
 
+    @Transactional
+    public Benutzer aktualisiereBenutzerAttribut(Long id, String feldname, String wert) {
+        Benutzer res = this.benutzerRepository.findById(id).get();
+        if (feldname.equals("name")) {
+            res.setName(wert);
+        } else if (feldname.equals("mail")){
+            res.setMail(wert);
+        }
+        return res;
+    }
+
 }

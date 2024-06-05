@@ -1,21 +1,26 @@
 
-<script src="https://unpkg.com/htmx.org@1.5.0"></script>
+<th:block th:fragment="feldausgeben(benutzerid, feldname, wert)">
+    <td>
+        <span   th:hx-get="@{/benutzer/{id}/hx/feld/{feldname}(id=${benutzerid},feldname=${feldname})}" 
+                th:text="${wert}"
+                hx-target="closest td"
+                hx-swap="outerHTML">
+        </span>
+    </td>
+</th:block>
 
-
-<td th:fragment="feldausgeben(benutzerid, feldname, wert)">
-    <span   th:text="${wert}"
-            th:hx-get="@{/benutzer/{id}/hx/feld/{feldname}(id=${benutzerid},feldname=${feldname})}" 
-            th:hx-trigger="click">
-    </span>
-</td>
-
-<td th:fragment="feldbearbeiten(benutzerid, feldname, wert)">
-    <form class="row">
-        <div class="col-auto">
-            <input type="text" class="form-control" name="wert" th:value="${wert}">
-        </div>
-        <div class="col-auto">
-            <button type="submit" class="btn btn-light" th:hx-put="@{/benutzer/{id}/hx/feld/{feldname}(id=${benutzerid},feldname=${feldname})}">ok</button>
-        </div>
-    </form>
-</td>
+<th:block th:fragment="feldbearbeiten(benutzerid, feldname, wert)">
+    <td>
+        <form class="row">
+            <div class="col-auto">
+                <input type="text" class="form-control" name="wert" th:value="${wert}">
+            </div>
+            <div class="col-auto">
+                <button type="submit" class="btn btn-light" th:hx-put="@{/benutzer/{id}/hx/feld/{feldname}(id=${benutzerid},feldname=${feldname})}"
+                                                            hx-target="closest td"
+                                                            hx-swap="outerHTML"
+                >ok</button>
+            </div>
+        </form>
+    </td>
+</th:block>
