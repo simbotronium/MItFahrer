@@ -82,7 +82,6 @@ public class BenutzerController {
     
     @GetMapping("/{id}/hx/feld/{feldname}")
     public String feldausgebenHX(@PathVariable("id") Long id, @PathVariable("feldname") String feldname, Model m) {
-        //TODO: process GET request
         System.out.println("GET GET GET GET GET GET GET GET");
         m.addAttribute("benutzerid", id);
         m.addAttribute("feldname", feldname);
@@ -93,7 +92,12 @@ public class BenutzerController {
     
     @PutMapping("/{id}/hx/feld/{feldname}")
     public String putMethodName(@PathVariable("id") Long id, @PathVariable("feldname") String feldname, @RequestParam("wert") String wert, Model m) {
-        this.benutzerService.aktualisiereBenutzerAttribut(id, feldname, wert);
+        try {
+            this.benutzerService.aktualisiereBenutzerAttribut(id, feldname, wert);
+        } catch(Exception e) {
+            m.addAttribute("wert", "Fehler");
+            return "benutzer/benutzerliste-zeile :: feldbearbeiten";
+        }
         m.addAttribute("benutzerid", id);
         m.addAttribute("feldname", feldname);
         m.addAttribute("wert", wert);
