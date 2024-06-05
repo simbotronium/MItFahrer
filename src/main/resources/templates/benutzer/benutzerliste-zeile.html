@@ -13,7 +13,7 @@
     <td>
         <form class="row">
             <div class="col-auto">
-                <input type="text" class="form-control" name="wert" th:value="${wert}">
+                <input type="text" class="form-control" name="wert" th:value="${wert}" th:classappend="${fehler} ? ' is-invalid' : ''">
             </div>
             <div class="col-auto">
                 <button type="submit" class="btn btn-light" th:hx-put="@{/benutzer/{id}/hx/feld/{feldname}(id=${benutzerid},feldname=${feldname})}"

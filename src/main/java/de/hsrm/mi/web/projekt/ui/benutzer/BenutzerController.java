@@ -95,7 +95,10 @@ public class BenutzerController {
         try {
             this.benutzerService.aktualisiereBenutzerAttribut(id, feldname, wert);
         } catch(Exception e) {
-            m.addAttribute("wert", "Fehler");
+            m.addAttribute("wert", this.benutzerService.holeBenutzerMitId(id).get().getName());
+            m.addAttribute("fehler", true);
+            m.addAttribute("feldname", feldname);
+            m.addAttribute("benutzerid", id);
             return "benutzer/benutzerliste-zeile :: feldbearbeiten";
         }
         m.addAttribute("benutzerid", id);
