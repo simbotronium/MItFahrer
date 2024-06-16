@@ -1,21 +1,28 @@
 package de.hsrm.mi.web.projekt.api.ort;
 
+import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import de.hsrm.mi.web.projekt.entities.ort.Ort;
 import de.hsrm.mi.web.projekt.services.ort.OrtService;
+import org.springframework.web.bind.annotation.RequestParam;
 
 
-@Controller
+
+@RestController
 @RequestMapping("/api/ort")
 public class OrtAPIController {
 
@@ -27,20 +34,31 @@ public class OrtAPIController {
     }
     
     @GetMapping
-    public String getMethodName() {
+    public String apiAlleOrte() {
 
         List<Ort> orte = this.ortService.holeAlleOrte();
-        
         ObjectMapper objectMapper = new ObjectMapper();
 
         try {
             String jsonString = objectMapper.writeValueAsString(orte);
+            return jsonString;
         } catch(IOException e) {
-
+            logger.error("etwas ging beim Serialisieren der Ortliste schief", e);
         }
 
         return new String();
     }
+
+    @GetMapping("/{id}")
+    public Record apiOrtFromID(@PathVariable("id") Long id) {
+        Optional<Ort> optOrt = this.ortService.holeOrtMitId(id);
+        if (optOrt.isPresent()) {
+            return OrtDTO.fromOrt(optOrt.get());
+        }
+        logger.info("Kein Ort für id " + id + " gefunden");
+        throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+    }
+    
     
 
 }
