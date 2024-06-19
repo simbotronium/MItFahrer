@@ -1,5 +1,8 @@
-<!-- eslint-disable vue/valid-template-root -->
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { ref } from 'vue';
+
+    const info = ref("Dies ist eine Nachricht");
+</script>
 
 <template>
   <header>
