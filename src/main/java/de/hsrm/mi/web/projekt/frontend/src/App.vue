@@ -1,7 +1,12 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref } from 'vue'
+import TourenListeView from './views/TourenListeView.vue'
 
-    const info = ref("Dies ist eine Nachricht");
+const info = ref('Dies ist eine Nachricht')
+
+function dismissAlert() {
+  info.value = ''
+}
 </script>
 
 <template>
@@ -59,8 +64,21 @@ import { ref } from 'vue';
         </div>
       </div>
     </nav>
-    <!-- <div class="alert alert-danger text-center"></div> -->
+    <!--alertbox-->
+    <div
+      class="alert alert-danger alert-warning alert-dismissible fade show text-center"
+      role="alert"
+      v-if="info !== ''"
+    >
+      {{ info }}
+      <button type="button" class="close" v-on:click="dismissAlert()" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
   </header>
+  <div style="padding:4em">
+    <TourenListeView></TourenListeView>
+  </div>
 
   <footer>
     <div class="row mt-5">
