@@ -19,7 +19,7 @@
 </template>
 
 <script setup lang="ts">
-import type { ITourDTD } from '@/views/TourenListeView.vue';
+import type { ITourDTD } from '@/stores/ITourDTD'; 
 import TourListeZeile from './TourListeZeile.vue';
 import { ref } from 'vue';
 
