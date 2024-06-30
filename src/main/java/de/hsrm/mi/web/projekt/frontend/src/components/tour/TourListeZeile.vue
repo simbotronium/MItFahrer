@@ -11,7 +11,7 @@
 </template>
 
 <script setup lang="ts">
-import type { ITourDTD } from '@/views/TourenListeView.vue'
+import type { ITourDTD } from '@/stores/ITourDTD'; 
 import { ref, reactive } from 'vue'
 
 const tourListenZeile = defineProps<{ tour: ITourDTD }>()

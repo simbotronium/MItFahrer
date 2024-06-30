@@ -21,8 +21,11 @@
 <script setup lang="ts">
 import type { ITourDTD } from '@/stores/ITourDTD'; 
 import TourListeZeile from './TourListeZeile.vue';
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 
-const touren = defineProps<{ tourliste: ITourDTD[] }>();
+const touren = defineProps<{ tourliste: ITourDTD[], word: String }>();
+const filteredTouren = computed(() => touren.tourliste.filter(tour => 
+ tour.startOrtName.toLowerCase().includes(touren.word.toLowerCase()) || tour.zielOrtName.toLowerCase().includes(touren.word.toLowerCase())
+))
 </script>
 

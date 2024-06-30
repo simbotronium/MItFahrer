@@ -1,7 +1,9 @@
 <template>
   <h1 class="title">Das aktuelle Mitfahrangebot</h1>
 
-  <TourenListe :tourliste="tourliste"></TourenListe>
+  
+
+  <TourenListe :tourliste="tourdata.tourdata.tourliste" word="search"></TourenListe>
 </template>
 
 <script setup lang="ts">
@@ -10,11 +12,13 @@
  */
 import { useTourenStore } from '@/stores/tourenstore'
 import TourenListe from '@/components/tour/TourenListe.vue'
-import { ref, onMounted } from 'vue'
+import { ref, watch, onMounted } from 'vue'
 
-const { tourliste, ok, updateTourListe } = useTourenStore()
+const { tourdata, updateTourListe } = useTourenStore()
+const search = ref(0)
 
-onMounted(() => updateTourListe());
+
+updateTourListe()
 
 </script>
 
