@@ -1,10 +1,22 @@
-import {ref, readonly, reactive} from 'vue'
+import {computed, readonly, reactive} from 'vue'
 
 export function useInfo() {
 
-    const info = ref('Dies ist eine Nachricht')
+    const state = reactive({
+      info: String('Dies ist eine Nachricht.')
+    })
     
     function loescheInfo() {
-        info.value = ''
+        state.info = ''
       }
+
+    function setzeInfo(msg: string) {
+      state.info = msg
+    }
+
+    return {
+      info: readonly(computed(() => state.info)),
+      loescheInfo,
+      setzeInfo
+    }
 }

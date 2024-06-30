@@ -1,12 +1,10 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import TourenListeView from './views/TourenListeView.vue'
+import { useInfo } from './composables/useInfo';
 
-const info = ref('Dies ist eine Nachricht')
+const { info, loescheInfo, setzeInfo } = useInfo()
 
-function dismissAlert() {
-  info.value = ''
-}
 </script>
 
 <template>
@@ -71,7 +69,7 @@ function dismissAlert() {
       v-if="info !== ''"
     >
       {{ info }}
-      <button type="button" class="close" v-on:click="dismissAlert()" aria-label="Close">
+      <button type="button" class="close" v-on:click="loescheInfo()" aria-label="Close">
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
