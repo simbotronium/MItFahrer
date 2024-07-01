@@ -4,7 +4,7 @@ import { useInfo } from './composables/useInfo';
 import { RouterView } from 'vue-router';
 
 const { state, loescheInfo, setzeInfo } = useInfo()
-
+loescheInfo()
 </script>
 
 <template>

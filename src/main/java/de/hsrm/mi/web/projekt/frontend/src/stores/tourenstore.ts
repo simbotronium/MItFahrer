@@ -3,7 +3,7 @@ import { defineStore } from "pinia"
 import type { ITourDTD } from "./ITourDTD"
 import { useInfo } from "@/composables/useInfo"
 
-const { info, loescheInfo, setzeInfo } = useInfo()
+const { state, loescheInfo, setzeInfo } = useInfo()
 
 export const useTourenStore = defineStore("tourenstore", () => {
     const tourdata = reactive({

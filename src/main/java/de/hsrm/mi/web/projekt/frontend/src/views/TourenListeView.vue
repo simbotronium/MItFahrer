@@ -16,12 +16,14 @@
 import { useTourenStore } from '@/stores/tourenstore'
 import TourenListe from '@/components/tour/TourenListe.vue'
 import { ref, watch, onMounted } from 'vue'
+import { useInfo } from '@/composables/useInfo';
 
-const { tourdata, updateTourListe } = useTourenStore()
-const search = ref("")
+const { loescheInfo } = useInfo();
+const { tourdata, updateTourListe } = useTourenStore();
+const search = ref("");
 
-
-updateTourListe()
+loescheInfo();
+updateTourListe();
 
 function clearSearch() {
   search.value = "";
