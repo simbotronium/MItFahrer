@@ -3,7 +3,7 @@ import { ref } from 'vue'
 import { useInfo } from './composables/useInfo';
 import { RouterView } from 'vue-router';
 
-const { info, loescheInfo, setzeInfo } = useInfo()
+const { state, loescheInfo, setzeInfo } = useInfo()
 
 </script>
 
@@ -66,9 +66,9 @@ const { info, loescheInfo, setzeInfo } = useInfo()
     <div
       class="alert alert-danger alert-warning alert-dismissible fade show text-center"
       role="alert"
-      v-if="info !== ''"
+      v-if="state.info !== ''"
     >
-      {{ info }}
+      {{ state.info }}
       <button type="button" class="close" v-on:click="loescheInfo()" aria-label="Close">
         <span aria-hidden="true">&times;</span>
       </button>

@@ -3,7 +3,7 @@ import {computed, readonly, reactive} from 'vue'
 export function useInfo() {
 
     const state = reactive({
-      info: String('Dies ist eine Nachricht.')
+      info: ""
     })
     
     function loescheInfo() {
@@ -15,7 +15,7 @@ export function useInfo() {
     }
 
     return {
-      info: readonly(computed(() => state.info)),
+      state: readonly(computed(() => state)),
       loescheInfo,
       setzeInfo
     }
