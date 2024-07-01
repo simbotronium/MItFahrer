@@ -1,9 +1,9 @@
 <template>
   <h1 class="title">Das aktuelle Mitfahrangebot</h1>
 
-  <div class="container-fluid">
-    <input type="text" v-model="search" placeholder="suchen">
-    <button class="btn btn-outline-secondary" @click="clearSearch">reset</button>
+  <div class="d-flex w-100">
+    <input type="text" v-model="search" placeholder="suchen" class="form-control flex-grow-1">
+    <button class="btn btn-outline-secondary ml-2" @click="clearSearch">reset</button>
   </div>
 
   <TourenListe :tourliste="tourdata.tourdata.tourliste" :word="search"></TourenListe>

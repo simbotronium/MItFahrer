@@ -41,7 +41,6 @@ export const useTourenStore = defineStore("tourenstore", () => {
           {"id":2,"abfahrDateTime":"2033-02-01T18:00:00","preis":17,"plaetze":3,"buchungen":0,"startOrtName":"Wiesbaden","startOrtId":1,"zielOrtName":"Clenze","zielOrtId":4,"anbieterName":"Joghurta Biffel","anbieterId":1,"distanz":369.6370869573237,"info":"Alle wollen nach Clenze - Du doch sicherlich auch! Oder nicht? Doch!"}
         ]
         `)
-        console.log(tourdata.tourliste, "hier")
     }
 
     return {
