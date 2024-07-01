@@ -11,7 +11,7 @@
     </thead>
 
     <tbody>
-        <tr v-for="tour in touren.tourliste" v-bind:key="tour.id">
+        <tr v-for="tour in filteredTouren" v-bind:key="tour.id">
             <TourListeZeile :tour="tour"/>
         </tr>
     </tbody>
