@@ -2,6 +2,7 @@
 import { ref } from 'vue'
 import { useInfo } from './composables/useInfo';
 import { RouterView } from 'vue-router';
+import TourView from './views/TourView.vue';
 
 const { info, loescheInfo, setzeInfo } = useInfo()
 
@@ -75,7 +76,7 @@ const { info, loescheInfo, setzeInfo } = useInfo()
     </div>
   </header>
   <div style="padding:4em">
-    <RouterView></RouterView>
+    <TourView id="14567"></TourView>
   </div>
 
   <footer>
