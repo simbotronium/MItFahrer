@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import TourenListeView from '@/views/TourenListeView.vue'
+import TourView from '@/views/TourView.vue'
 // import HomeView from '../views/HomeView.vue'
 
 const router = createRouter({
@@ -13,7 +14,14 @@ const router = createRouter({
       path: '/touren',
       name: "Tourliste",
       component: TourenListeView
+    },
+    {
+    path: "/touren/:tourid",
+    name: "Tour Detailansicht",
+    component: TourView,
+    props: route => ({ id: Number(route.params.tourid) })
     }
+
     // {
     //   path: '/',
     //   name: 'home',
