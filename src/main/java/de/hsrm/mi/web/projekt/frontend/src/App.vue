@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import TourenListeView from './views/TourenListeView.vue'
 import { useInfo } from './composables/useInfo';
+import { RouterView } from 'vue-router';
 
 const { info, loescheInfo, setzeInfo } = useInfo()
 
@@ -75,7 +75,7 @@ const { info, loescheInfo, setzeInfo } = useInfo()
     </div>
   </header>
   <div style="padding:4em">
-    <TourenListeView></TourenListeView>
+    <RouterView></RouterView>
   </div>
 
   <footer>

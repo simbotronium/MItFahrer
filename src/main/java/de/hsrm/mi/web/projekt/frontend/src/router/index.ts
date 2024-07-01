@@ -1,9 +1,19 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import TourenListeView from '@/views/TourenListeView.vue'
 // import HomeView from '../views/HomeView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
+    {
+      path: '/',
+      redirect: '/touren'
+    },
+    {
+      path: '/touren',
+      name: "Tourliste",
+      component: TourenListeView
+    }
     // {
     //   path: '/',
     //   name: 'home',
