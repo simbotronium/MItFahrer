@@ -1,7 +1,10 @@
 <template>
   <h1 class="title">Das aktuelle Mitfahrangebot</h1>
 
-  <input type="text" v-model="search" placeholder="suchen">
+  <div class="container-fluid">
+    <input type="text" v-model="search" placeholder="suchen">
+    <button class="btn btn-outline-secondary" @click="clearSearch">reset</button>
+  </div>
 
   <TourenListe :tourliste="tourdata.tourdata.tourliste" :word="search"></TourenListe>
 </template>
@@ -19,6 +22,10 @@ const search = ref("")
 
 
 updateTourListe()
+
+function clearSearch() {
+  search.value = "";
+}
 
 </script>
 
