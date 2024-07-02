@@ -1,4 +1,4 @@
-package de.hsrm.mi.web.projekt.services.tour;
+package de.hsrm.mi.web.projekt.api.tour;
 
 import java.time.LocalDateTime;
 
