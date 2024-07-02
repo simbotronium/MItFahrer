@@ -75,7 +75,10 @@ loescheInfo()
     </div>
   </header>
   <div style="padding:4em">
-    <RouterView></RouterView>
+    <Suspense>
+      <template #fallback><div>loading...</div></template>
+      <RouterView></RouterView>
+    </Suspense>
   </div>
 
   <footer>

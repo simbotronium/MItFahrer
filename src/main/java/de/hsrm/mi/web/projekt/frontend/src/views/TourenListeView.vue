@@ -23,7 +23,7 @@ const { tourdata, updateTourListe } = useTourenStore();
 const search = ref("");
 
 loescheInfo();
-updateTourListe();
+await updateTourListe();
 
 function clearSearch() {
   search.value = "";
