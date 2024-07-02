@@ -14,6 +14,10 @@ import de.hsrm.mi.web.projekt.entities.benutzer.BenutzerRepository;
 import de.hsrm.mi.web.projekt.entities.ort.OrtRepository;
 import de.hsrm.mi.web.projekt.entities.tour.Tour;
 import de.hsrm.mi.web.projekt.entities.tour.TourRepository;
+import de.hsrm.mi.web.projekt.messaging.EventTyp;
+import de.hsrm.mi.web.projekt.messaging.FrontendNachrichtEvent;
+import de.hsrm.mi.web.projekt.messaging.FrontendNachrichtService;
+import de.hsrm.mi.web.projekt.messaging.Operation;
 import de.hsrm.mi.web.projekt.services.benutzer.BenutzerServiceImpl;
 
 @Service
@@ -27,12 +31,15 @@ public class TourServiceImpl implements TourService {
     private final BenutzerRepository benutzerRepository;
     @Autowired 
     private final OrtRepository ortRepository;
+    @Autowired
+    private final FrontendNachrichtService fens;
 
 
-    public TourServiceImpl(TourRepository tr, BenutzerRepository br, OrtRepository or) {
+    public TourServiceImpl(TourRepository tr, BenutzerRepository br, OrtRepository or, FrontendNachrichtService fens) {
         this.tourRepository = tr;
         this.benutzerRepository = br;
         this.ortRepository = or;
+        this.fens = fens;
     }
 
     
@@ -60,14 +67,16 @@ public class TourServiceImpl implements TourService {
     @Transactional
     public Tour speichereTour(Tour t) {
         logger.info("Speichere Tour {}" ,t.getAbfahrDateTime());
-        
-        return this.tourRepository.save(t);
+        Tour res = this.tourRepository.save(t);
+        this.fens.sendEvent(new FrontendNachrichtEvent(EventTyp.TOUR, Operation.CREATE, res.getId()));
+        return res;
     }
 
     @Override
     @Transactional
     public void loescheTourMitId(long id) {
         logger.info("Lösche Tour mit ID {}", id);
+        this.fens.sendEvent(new FrontendNachrichtEvent(EventTyp.TOUR, Operation.DELETE, id));
         this.tourRepository.deleteById(id);
     }
 
