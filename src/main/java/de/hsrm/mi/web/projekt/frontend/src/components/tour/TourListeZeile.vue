@@ -1,8 +1,8 @@
 <template>
-  <td>{{ tourListenZeile.tour.abfahrDateTime }}</td>
+  <td>{{ tourListenZeile.tour.abfahrDateTime.split("T")[0] }} {{ tourListenZeile.tour.abfahrDateTime.split("T")[1] }}</td>
   <td>{{ tourListenZeile.tour.startOrtName }}</td>
   <td>{{ tourListenZeile.tour.zielOrtName }}</td>
-  <td>{{ tourListenZeile.tour.distanz }}</td>
+  <td>{{ Math.round(tourListenZeile.tour.distanz) }}</td>
   <td>{{ tourListenZeile.tour.plaetze }}</td>
   <td>{{ tourListenZeile.tour.plaetze - tourListenZeile.tour.buchungen }}</td>
   <td>{{ rz.rpreis }}</td>

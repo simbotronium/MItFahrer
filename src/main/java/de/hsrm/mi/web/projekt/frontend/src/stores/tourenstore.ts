@@ -11,7 +11,7 @@ export const useTourenStore = defineStore("tourenstore", () => {
         ok: false
     })
 
-    /*
+    
     async function updateTourListe() {
       try {
         const resp = await fetch('/api/tour', {
@@ -27,11 +27,11 @@ export const useTourenStore = defineStore("tourenstore", () => {
         setzeInfo(`Fehler: ${reason}`)
         tourdata.ok = false
       }
-      console.log("hier")
     }
 
-    */
+    
 
+    /*
     function updateTourListe() {
       tourdata.tourliste = JSON.parse(`
         [
@@ -42,6 +42,7 @@ export const useTourenStore = defineStore("tourenstore", () => {
         ]
         `)
     }
+        */
 
     return {
       tourdata: reactive({tourdata}),
