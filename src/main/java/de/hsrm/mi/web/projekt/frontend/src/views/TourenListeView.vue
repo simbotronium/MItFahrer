@@ -19,11 +19,15 @@ import { ref, watch, onMounted } from 'vue'
 import { useInfo } from '@/composables/useInfo';
 
 const { loescheInfo } = useInfo();
-const { tourdata, updateTourListe } = useTourenStore();
+const { tourdata, updateTourListe, startTourLiveUpdate } = useTourenStore();
 const search = ref("");
 
 loescheInfo();
 await updateTourListe();
+
+if (tourdata.tourdata.ok) {
+  startTourLiveUpdate();
+}
 
 function clearSearch() {
   search.value = "";

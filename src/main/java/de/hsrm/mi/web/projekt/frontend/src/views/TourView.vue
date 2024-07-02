@@ -18,12 +18,15 @@
   import { useInfo } from '@/composables/useInfo';
 
   const { state, loescheInfo, setzeInfo } = useInfo()
-  const { tourdata, updateTourListe } = useTourenStore();
+  const { tourdata, updateTourListe, startTourLiveUpdate } = useTourenStore();
   const id = defineProps<{ id: Number }>();
 
   if (!tourdata.tourdata.ok) {
     console.log("hier1")
     await updateTourListe();
+    if (tourdata.tourdata.ok) {
+      startTourLiveUpdate();
+    }
   }
 
   const tour = tourdata.tourdata.tourliste.find(item => item.id === id.id);

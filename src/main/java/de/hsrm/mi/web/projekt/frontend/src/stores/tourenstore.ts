@@ -2,10 +2,13 @@ import { computed, reactive } from "vue"
 import { defineStore } from "pinia"
 import type { ITourDTD } from "./ITourDTD"
 import { useInfo } from "@/composables/useInfo"
+import { Client, type Message } from "@stomp/stompjs"
+import type { IFrontendNachrichtEvent } from "@/services/IFrontendNachrichtEvent"
 
-const { state, loescheInfo, setzeInfo } = useInfo()
+const { state, loescheInfo, setzeInfo } = useInfo();
 
 export const useTourenStore = defineStore("tourenstore", () => {
+    let stompClientActivated = false;
     const tourdata = reactive({
         tourliste: Array<ITourDTD>(),
         ok: false
@@ -13,6 +16,7 @@ export const useTourenStore = defineStore("tourenstore", () => {
 
     
     async function updateTourListe() {
+      console.log("updating tour list")
       try {
         const resp = await fetch('/api/tour', {
           method: 'GET'
@@ -29,7 +33,39 @@ export const useTourenStore = defineStore("tourenstore", () => {
       }
     }
 
-    
+    function startTourLiveUpdate() {
+      if (stompClientActivated) {
+        return;
+      }
+      const wsurl = `ws://${window.location.host}/stompbroker`;
+      const DEST = "/topic/tour";
+
+      const stompclient = new Client({ brokerURL: wsurl });
+      stompclient.onWebSocketError = (event) => { console.log("Web Socket Error", event) };
+      stompclient.onStompError = (event) => { console.log("Stomp error", event) };
+
+      stompclient.onConnect = (frame) => {
+
+        console.log("connected")
+
+        stompclient.subscribe(DEST, async (message) => {
+          const event: IFrontendNachrichtEvent = JSON.parse(message.body);
+          console.log("empfangen: ", JSON.stringify(event));
+          if (event.eventTyp === "TOUR") {
+            await updateTourListe();
+          }
+        });
+      };
+
+      stompclient.onDisconnect = () => {
+        stompClientActivated = false;
+        console.log("disconnect");
+        setzeInfo("StompClient disconnected");
+      };
+
+      stompclient.activate();
+      stompClientActivated = true;
+    }
 
     /*
     function updateTourListe() {
@@ -46,6 +82,7 @@ export const useTourenStore = defineStore("tourenstore", () => {
 
     return {
       tourdata: reactive({tourdata}),
-      updateTourListe
+      updateTourListe,
+      startTourLiveUpdate
     }
 })
