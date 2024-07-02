@@ -2,7 +2,8 @@ package de.hsrm.mi.web.projekt.entities.tour;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
-
+import java.util.HashSet;
+import java.util.Set;
 
 import org.springframework.data.annotation.Version;
 
@@ -11,6 +12,7 @@ import de.hsrm.mi.web.projekt.entities.ort.Ort;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.Positive;
@@ -35,6 +37,8 @@ public class Tour implements Serializable{
     private Ort zielort;
     @ManyToOne
     private Benutzer anbieter;
+    @ManyToMany
+    private Set<Benutzer> mitfahrgaeste = new HashSet<>();
 
     public Benutzer getAnbieter() {
         return anbieter;
@@ -80,6 +84,10 @@ public class Tour implements Serializable{
     }
     public long getId() {
         return id;
+    }
+
+    public Set<Benutzer> getMitfahrgaeste() {
+        return this.mitfahrgaeste;
     }
 
     @Override

@@ -14,6 +14,7 @@ import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Version;
 import jakarta.validation.constraints.Email;
@@ -52,6 +53,8 @@ public class Benutzer implements Serializable {
     private String magNicht;
     @OneToMany(mappedBy = "anbieter", cascade = CascadeType.REMOVE)
     private Set<Tour> angeboteneTouren = new HashSet<>();
+    @OneToMany(mappedBy = "anbieter")
+    private Set<Tour> gebuchteTouren = new HashSet<>();
 
     public void add(Tour neueTour) {
         this.angeboteneTouren.add(neueTour);
@@ -140,6 +143,8 @@ public class Benutzer implements Serializable {
         this.id = id;
     }
 
-    
+    public Set<Tour> getGebuchteTouren() {
+        return this.angeboteneTouren;
+    }    
 
 }
