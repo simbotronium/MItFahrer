@@ -29,13 +29,13 @@
                 <td th:text="${tour.startort.name}"></td>
                 <td th:text="${tour.zielort.name}"></td>
                 <td th:text="${tour.anbieter.name}"></td>
-                <td><a th:href="@{/tour/{id}(id=${tour.id})}"><button th:text="#{tourliste.eintrag.bearbeiten}"
+                <td><a th:href="@{/admin/tour/{id}(id=${tour.id})}"><button th:text="#{tourliste.eintrag.bearbeiten}"
                             class="btn btn-danger" th:action="@{tour/tour.id}">Bearbeiten</button></a></td>
-                <td><a th:href="@{/tour/{id}/del(id=${tour.id})}"><button th:text="#{tourliste.eintrag.loeschen}"
+                <td><a th:href="@{/admin/tour/{id}/del(id=${tour.id})}"><button th:text="#{tourliste.eintrag.loeschen}"
                             class="btn btn-secondary" type="button">Löschen</button></a></td>
             </tr>
         </table>
-        <a th:href="@{/tour/0}"><button th:text="#{tourliste.neu}" class="btn btn-primary">Neuer Ort</button></a>
+        <a th:href="@{/admin/tour/0}"><button th:text="#{tourliste.neu}" class="btn btn-primary">Neuer Ort</button></a>
     </div>
     <footer th:replace="~{/../fragments/kopffuss :: fuss}">
     </footer>

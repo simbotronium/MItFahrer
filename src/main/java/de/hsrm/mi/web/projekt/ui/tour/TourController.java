@@ -22,7 +22,7 @@ import de.hsrm.mi.web.projekt.services.tour.TourService;
 import jakarta.validation.Valid;
 
 @Controller
-@RequestMapping("/tour")
+@RequestMapping("/admin")
 @SessionAttributes(names={"tourID", "tourformular", "tour"})
 public class TourController {
     private Tour tour;
@@ -42,7 +42,7 @@ public class TourController {
         m.addAttribute("tourformular", new TourFormular());
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/tour/{id}")
     public String getMethodName(@PathVariable("id") Long id, Model m) {
         Optional<Tour> optTour = this.tourService.holeTourMitId(id);
 
@@ -68,15 +68,15 @@ public class TourController {
         return "tour/tourbearbeiten";
     }
 
-    @GetMapping("/{id}/del")
+    @GetMapping("/tour/{id}/del")
     public String deletePlace(Model m, @PathVariable("id") Long id) {
         this.tourService.loescheTourMitId(id);
 
-        return "redirect:/tour";
+        return "redirect:/admin/tour";
     }
     
 
-    @GetMapping
+    @GetMapping("/tour")
     public String getMethodName(Model m) {
         List<Tour> tl = tourService.holeAlleTouren();
         m.addAttribute("tourliste", tl);
@@ -84,7 +84,7 @@ public class TourController {
     }
     
 
-    @PostMapping("/{id}")
+    @PostMapping("/tour/{id}")
     public String postMethodName(@Valid @ModelAttribute("tourformular") TourFormular form, BindingResult result,
             Model m, @ModelAttribute("tour") Tour tour, @PathVariable("id") Long id) {
         if (result.hasErrors()) {
@@ -100,9 +100,14 @@ public class TourController {
             m.addAttribute("info", e.getMessage());
         }
         if (id == 0) {
-            return "redirect:/tour/" + tour.getId();
+            return "redirect:/admin/tour/" + tour.getId();
         }
         return "tour/tourbearbeiten";
+    }
+
+    @GetMapping
+    public String redirect() {
+        return "redirect:/admin/tour";
     }
 
     private void setLists(TourFormular tf) {

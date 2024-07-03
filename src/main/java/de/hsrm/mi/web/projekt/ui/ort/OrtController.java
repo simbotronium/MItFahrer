@@ -1,8 +1,10 @@
 package de.hsrm.mi.web.projekt.ui.ort;
 
+import java.util.List;
+import java.util.Optional;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -17,11 +19,9 @@ import de.hsrm.mi.web.projekt.entities.ort.Ort;
 import de.hsrm.mi.web.projekt.services.ort.OrtService;
 import jakarta.validation.Valid;
 
-import java.util.*;
-
 
 @Controller
-@RequestMapping("/ort")
+@RequestMapping("/admin/ort")
 @SessionAttributes(names = {"ortID", "ortformular", "ort"})
 public class OrtController {
 
@@ -66,7 +66,7 @@ public class OrtController {
     public String deletePlace(Model m, @PathVariable("id") Long id) {
         this.ortService.loescheOrtMitId(id);
 
-        return "redirect:/ort";
+        return "redirect:/admin/ort";
     }
     
 
@@ -104,7 +104,7 @@ public class OrtController {
             m.addAttribute("info", e.getMessage());
         }
         if (id == 0) {
-            return "redirect:/ort/" + ort.getId();
+            return "redirect:/admin/ort/" + ort.getId();
         }
         return "ort/ortbearbeiten";
     }

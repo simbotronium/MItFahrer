@@ -15,15 +15,15 @@
                 <td th:text="${benutzer.id}"></td>
                 <td th:replace="~{benutzer/benutzerliste-zeile :: feldausgeben(benutzerid=${benutzer.id},feldname=name,wert=${benutzer.name})}"></td>
                 <td th:replace="~{benutzer/benutzerliste-zeile :: feldausgeben(benutzerid=${benutzer.id},feldname=mail,wert=${benutzer.mail})}"></td>
-                <td><a th:href="@{/benutzer/{id}(id=${benutzer.id})}"><button
+                <td><a th:href="@{/admin/benutzer/{id}(id=${benutzer.id})}"><button
                             th:text="#{benutzerliste.eintrag.bearbeiten}" class="btn btn-danger"
                             th:action="@{benutzer/benutzer.id}">Bearbeiten</button></a></td>
-                <td><a th:href="@{/benutzer/{id}/del(id=${benutzer.id})}"><button
+                <td><a th:href="@{/admin/benutzer/{id}/del(id=${benutzer.id})}"><button
                             th:text="#{benutzerliste.eintrag.loeschen}" class="btn btn-secondary"
                             type="button">Löschen</button></a></td>
             </tr>
         </table>
-        <a th:href="@{/benutzer/0}"><button th:text="#{benutzerliste.neu}" class="btn btn-primary">Neuer
+        <a th:href="@{/admin/benutzer/0}"><button th:text="#{benutzerliste.neu}" class="btn btn-primary">Neuer
                 Benutzer</button></a>
     </div>
     <footer th:replace="~{/../fragments/kopffuss :: fuss}">

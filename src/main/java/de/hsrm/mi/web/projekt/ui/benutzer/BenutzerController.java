@@ -1,9 +1,19 @@
 package de.hsrm.mi.web.projekt.ui.benutzer;
 
+import java.util.Optional;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import de.hsrm.mi.web.projekt.entities.benutzer.Benutzer;
@@ -12,22 +22,11 @@ import de.hsrm.mi.web.projekt.services.geo.GeoService;
 import de.hsrm.mi.web.projekt.services.geo.GeoServiceImpl;
 import jakarta.validation.Valid;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import java.util.Optional;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.PutMapping;
-
 
 
 
 @Controller
-@RequestMapping("/benutzer")
+@RequestMapping("/admin/benutzer")
 @SessionAttributes(names = { "formular", "benutzerID", "maxwunsch", "benutzer" })
 
 public class BenutzerController {
@@ -76,7 +75,7 @@ public class BenutzerController {
     public String deleteUser(Model m, @PathVariable("id") Long id) {
         this.benutzerService.loescheBenutzerMitId(id);
 
-        return "redirect:/benutzer";
+        return "redirect:/admin/benutzer";
     }
     
     @GetMapping("/{id}/hx/feld/{feldname}")
@@ -127,7 +126,7 @@ public class BenutzerController {
             result.rejectValue("password", "benutzer.passwort.ungesetzt", "Passwort wurde noch nicht gesetzt");
         }
         if (result.hasErrors()) {
-            return "benutzer/benutzerbearbeiten";
+            return "/admin/benutzer/benutzerbearbeiten";
         }
 
         form.toBenutzer(benutzer);
@@ -138,7 +137,7 @@ public class BenutzerController {
             m.addAttribute("info", e.getMessage());
         }
         if (id == 0) {
-            return "redirect:/benutzer/" + benutzer.getId();
+            return "redirect:/admin/benutzer/" + benutzer.getId();
         }
         return "benutzer/benutzerbearbeiten";
     }
