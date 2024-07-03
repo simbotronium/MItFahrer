@@ -20,7 +20,7 @@ const router = createRouter({
     name: "Tour Detailansicht",
     component: TourView,
     props: route => ({ id: Number(route.params.tourid) })
-    }
+    },
 
     // {
     //   path: '/',
