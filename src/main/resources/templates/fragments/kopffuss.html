@@ -17,7 +17,7 @@
                     <li class="nav-item">
                         <a th:href="@{/admin/benutzer}" th:text="#{kopf.benutzer}" class="nav-item nav-link">Benutzer</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" sec:authorize="hasRole('CHEF')">
                         <a th:href="@{/admin/ort}" th:text="#{kopf.orte}" class="nav-item nav-link">Orte</a>
                     </li>
                     <li class="nav-item">
@@ -38,6 +38,9 @@
                                 <li><a class="dropdown-item" th:href="@{?sprache=vnm}">VNM</a></li>
                             </ul>
                         </li>
+                        <li class="nav-item">
+                            <a th:href="@{/logout}" class="nav-item nav-link">Logout</a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -54,6 +57,9 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#" th:text="#{fuss.kontakt}"></a>
+            </li>
+            <li class="nav-item ml-auto">
+                <a class="nav-link disabled ml-auto" sec:authentication="name">user</a>
             </li>
         </ul>
     </div>
