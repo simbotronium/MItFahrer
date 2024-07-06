@@ -23,6 +23,7 @@ public class SecurityConfiguration {
         return PasswordEncoderFactories.createDelegatingPasswordEncoder();
     }
 
+    /* 
     @Bean UserDetailsService userDetailsService() {
         UserBuilder userBuilder = User.withDefaultPasswordEncoder();
 
@@ -36,6 +37,7 @@ public class SecurityConfiguration {
                             .build();
         return new InMemoryUserDetailsManager(user1, user2);
     }
+    */
 
     @Bean SecurityFilterChain filterChainApp(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests(autherize -> autherize

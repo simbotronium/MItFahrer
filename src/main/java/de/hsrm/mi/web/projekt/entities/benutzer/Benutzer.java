@@ -13,6 +13,7 @@ import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
@@ -45,15 +46,15 @@ public class Benutzer implements Serializable {
     @DateTimeFormat(iso=ISO.DATE)
     @Past(message = "{benutzer.geburtstag.zukunft}")
     private LocalDate birthday;
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     private Set<String> magList = new HashSet<>();
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     private Set<String> magNichtList = new HashSet<>();
     private String mag;
     private String magNicht;
-    @OneToMany(mappedBy = "anbieter", cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "anbieter", cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
     private Set<Tour> angeboteneTouren = new HashSet<>();
-    @OneToMany(mappedBy = "anbieter")
+    @OneToMany(mappedBy = "anbieter", fetch = FetchType.EAGER)
     private Set<Tour> gebuchteTouren = new HashSet<>();
 
     public void add(Tour neueTour) {
