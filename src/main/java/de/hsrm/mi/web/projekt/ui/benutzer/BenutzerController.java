@@ -76,7 +76,9 @@ public class BenutzerController {
 
     @GetMapping("/{id}/del")
     public String deleteUser(Model m, @PathVariable("id") Long id) {
-        this.benutzerService.loescheBenutzerMitId(id);
+        if (!this.benutzerService.loescheBenutzerMitId(id)) {
+            m.addAttribute("info", "cannot delete other users");
+        }
 
         return "redirect:/admin/benutzer";
     }

@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -52,9 +53,16 @@ public class BenutzerServiceImpl implements BenutzerService{
 
     @Override
     @Transactional
-    public void loescheBenutzerMitId(long id) {
+    public boolean loescheBenutzerMitId(long id) {
+        Optional<Benutzer> opt = this.benutzerRepository.findById(id);
+        if (opt.isPresent() && SecurityContextHolder.getContext().getAuthentication() != null
+            && !SecurityContextHolder.getContext().getAuthentication().getName().equals(opt.get().getMail())) {
+                logger.info("Cannot delete other users");
+                return false;
+        }
         logger.info("Lösche Benutzer mit ID {}", id);
         this.benutzerRepository.deleteById(id);
+        return true;
     }
 
     @Transactional

@@ -12,7 +12,7 @@ public interface BenutzerService {
 
     Benutzer speichereBenutzer(Benutzer b);
 
-    void loescheBenutzerMitId(long id);
+    boolean loescheBenutzerMitId(long id);
 
     Benutzer aktualisiereBenutzerAttribut(Long id, String feldname, String wert);
 }
