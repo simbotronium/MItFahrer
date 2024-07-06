@@ -4,6 +4,7 @@ import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -35,9 +36,11 @@ public class BenutzerController {
     Logger logger = LoggerFactory.getLogger(this.getClass());
     private final int maxwunsch = 5;
     private final BenutzerService benutzerService;
+    private final PasswordEncoder passwordEncoder;
 
-    public BenutzerController(BenutzerService bs) {
+    public BenutzerController(BenutzerService bs, PasswordEncoder pe) {
         this.benutzerService = bs;
+        this.passwordEncoder = pe;
     }
 
     @ModelAttribute("formular")
@@ -80,7 +83,6 @@ public class BenutzerController {
     
     @GetMapping("/{id}/hx/feld/{feldname}")
     public String feldausgebenHX(@PathVariable("id") Long id, @PathVariable("feldname") String feldname, Model m) {
-        System.out.println("GET GET GET GET GET GET GET GET");
         m.addAttribute("benutzerid", id);
         m.addAttribute("feldname", feldname);
         String wert = (feldname.equals("name")) ? this.benutzerService.holeBenutzerMitId(id).get().getName() : this.benutzerService.holeBenutzerMitId(id).get().getMail();
@@ -130,6 +132,7 @@ public class BenutzerController {
         }
 
         form.toBenutzer(benutzer);
+        benutzer.setPassword(this.passwordEncoder.encode(form.getPassword()));
         try {
             m.addAttribute("benutzer", benutzerService.speichereBenutzer(benutzer));
         } catch (Exception e) {

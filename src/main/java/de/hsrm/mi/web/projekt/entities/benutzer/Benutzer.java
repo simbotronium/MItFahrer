@@ -10,6 +10,7 @@ import org.springframework.format.annotation.DateTimeFormat.ISO;
 import de.hsrm.mi.web.projekt.entities.tour.Tour;
 import de.hsrm.mi.web.projekt.validators.GutesPasswort;
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -36,9 +37,9 @@ public class Benutzer implements Serializable {
     private String name = "";
     @NotBlank
     @Email(message="{benutzer.email.falschesformat}")
+    @Column(unique = true)
     private String mail = "";
     @NotBlank
-    @GutesPasswort
     private String password = "";
     @NotNull
     @DateTimeFormat(iso=ISO.DATE)

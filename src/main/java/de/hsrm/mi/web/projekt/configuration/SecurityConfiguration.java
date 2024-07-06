@@ -14,6 +14,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import static org.springframework.security.config.Customizer.withDefaults;
+import static org.springframework.boot.autoconfigure.security.servlet.PathRequest.toH2Console;
 
 @Configuration 
 @EnableWebSecurity
@@ -38,11 +39,14 @@ public class SecurityConfiguration {
 
     @Bean SecurityFilterChain filterChainApp(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests(autherize -> autherize
+            .requestMatchers(toH2Console()).permitAll()
             .requestMatchers("/admin/ort/**").hasRole("CHEF")
             .requestMatchers("/admin/**").authenticated()
             .requestMatchers("**").permitAll())
-            .formLogin(withDefaults());
-            
+            .formLogin(withDefaults())
+            .csrf(csrf -> csrf.ignoringRequestMatchers(toH2Console()))
+            .csrf(csrf -> csrf.ignoringRequestMatchers("/admin/benutzer/*/hx/feld/*"))
+            .headers(hdrs -> hdrs.frameOptions(fo -> fo.sameOrigin()));
         return http.build();
     }
 
