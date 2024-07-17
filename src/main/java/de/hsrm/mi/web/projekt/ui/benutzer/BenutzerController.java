@@ -130,7 +130,7 @@ public class BenutzerController {
             result.rejectValue("password", "benutzer.passwort.ungesetzt", "Passwort wurde noch nicht gesetzt");
         }
         if (result.hasErrors()) {
-            return "/admin/benutzer/benutzerbearbeiten";
+            return "benutzer/benutzerbearbeiten";
         }
 
         form.toBenutzer(benutzer);

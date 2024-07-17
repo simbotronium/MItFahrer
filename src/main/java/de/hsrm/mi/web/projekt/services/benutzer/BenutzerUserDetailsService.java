@@ -31,6 +31,9 @@ public class BenutzerUserDetailsService implements UserDetailsService {
     }
     
     private String getRole(Set<String> mag) {
+        System.out.println("HIER HIER HIER HIER HIER");
+        System.out.println(mag);
+        System.out.println("HIER HIER HIER HIER HIER");
         for (String m: mag) {
             if (m.equals("MACHT")) {
                 return "CHEF";

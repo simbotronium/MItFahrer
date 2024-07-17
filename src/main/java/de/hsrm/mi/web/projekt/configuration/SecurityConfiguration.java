@@ -13,6 +13,9 @@ import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
+
 import static org.springframework.security.config.Customizer.withDefaults;
 import static org.springframework.boot.autoconfigure.security.servlet.PathRequest.toH2Console;
 
@@ -23,33 +26,28 @@ public class SecurityConfiguration {
         return PasswordEncoderFactories.createDelegatingPasswordEncoder();
     }
 
-    /* 
-    @Bean UserDetailsService userDetailsService() {
-        UserBuilder userBuilder = User.withDefaultPasswordEncoder();
-
-        UserDetails user1 = userBuilder.username("joendhard@diebiffels.de")
-                            .roles("USER")
-                            .password("123")
-                            .build();
-        UserDetails user2 = userBuilder.username("joghurta@diebiffels.de")
-                            .roles("CHEF")
-                            .password("123")
-                            .build();
-        return new InMemoryUserDetailsManager(user1, user2);
-    }
-    */
-
     @Bean SecurityFilterChain filterChainApp(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests(autherize -> autherize
             .requestMatchers(toH2Console()).permitAll()
             .requestMatchers("/admin/ort/**").hasRole("CHEF")
             .requestMatchers("/admin/**").authenticated()
             .requestMatchers("**").permitAll())
-            .formLogin(withDefaults())
+            .formLogin(formLogin -> 
+                formLogin
+                    .successHandler(customAuthenticationSuccessHandler())
+                    .permitAll()
+                    )
             .csrf(csrf -> csrf.ignoringRequestMatchers(toH2Console()))
             .csrf(csrf -> csrf.ignoringRequestMatchers("/admin/benutzer/*/hx/feld/*"))
             .headers(hdrs -> hdrs.frameOptions(fo -> fo.sameOrigin()));
         return http.build();
+    }
+
+    @Bean
+    public AuthenticationSuccessHandler customAuthenticationSuccessHandler() {
+        SimpleUrlAuthenticationSuccessHandler successHandler = new SimpleUrlAuthenticationSuccessHandler();
+        successHandler.setDefaultTargetUrl("/admin");
+        return successHandler;
     }
 
 }
